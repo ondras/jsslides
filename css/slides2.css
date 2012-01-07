@@ -1,0 +1,132 @@
+html, body {
+	counter-reset: slide;
+}
+
+thead td {
+	font-weight: bold;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+.slide {
+	counter-increment: slide;
+}
+
+.slide h2:before {
+	content: counter(slide);
+	opacity: 0.5;
+	margin-right: 0.3em;
+}
+
+@media screen {
+	html, body {
+		margin: 0px;
+		height: 100%;
+		overflow: hidden;
+	}
+	
+	h1 {
+		display: none;
+	}
+
+	.slide {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		overflow: hidden;
+		background-color: white;
+		transform-origin: 0 0;
+		-o-transform-origin: 0 0;
+		-ms-transform-origin: 0 0;
+		-moz-transform-origin: 0 0;
+		-webkit-transform-origin: 0 0;
+
+		transition: transform 500ms;
+		-o-transition: -o-transform 500ms;
+		-ms-transition: -ms-transform 500ms;
+		-moz-transition: -moz-transform 500ms;
+		-webkit-transition: -webkit-transform 500ms;
+	}
+
+	.slide.before {
+		transform: translate(-100%, 0);
+		-o-transform: translate(-100%, 0);
+		-ms-transform: translate(-100%, 0);
+		-moz-transform: translate(-100%, 0);
+		-webkit-transform: translate(-100%, 0);
+	}
+
+	.slide.after {
+		transform: translate(100%, 0);
+		-o-transform: translate(100%, 0);
+		-ms-transform: translate(100%, 0);
+		-moz-transform: translate(100%, 0);
+		-webkit-transform: translate(100%, 0);
+	}
+
+	.overview footer {
+		display: none;
+	}
+
+	.overview .slide {
+		cursor: pointer;
+	}
+	
+	.overview .slide:after {
+		content: counter(slide);
+	}
+
+	#help {
+		left: 50%;
+		top: 50%;
+		position: fixed;
+		transform: translate(-50%, -50%);
+		-o-transform: translate(-50%, -50%);
+		-ms-transform: translate(-50%, -50%);
+		-moz-transform: translate(-50%, -50%);
+		-webkit-transform: translate(-50%, -50%);
+		color: white;
+		text-shadow: 0px 1px 1px black;
+		background-color: rgba(100, 100, 100, 0.9);
+		border-radius: 20px;
+		padding: 1em;
+	}
+	
+	#help h2 {
+		font-size: 120%;
+		text-align: center;
+	}
+
+	#help p {
+		text-align: center;
+	}
+	
+	#help a {
+		color: white;
+	}
+	
+	#help table {
+		margin: 0 auto;
+	}
+	
+	#help td {
+		padding: 0.3em 1em;
+	}
+	
+	#help td:last-child {
+		text-align: right;
+		font-weight: bold;
+	}
+}
+
+@media print {
+	.slide {
+		page-break-after: always;
+	}
+	
+	footer {
+		display: none;
+	}
+}
