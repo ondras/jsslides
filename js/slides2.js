@@ -11,10 +11,13 @@ Presentation.prototype.init = function() {
 	this._sizes = ["50%" ,"75%", "90%", "100%" ,"120%", "150%", "200%", "250%", "350%"];
 	this._size = -1;
 
+	this._languages = [];
+
 	this._title = document.title;
 	this._overviewActive = false;
 	
 	this._build();
+	this._cycleLanguage();
 	this._fontNormal();
 	
 	OZ.Event.add(document, "keydown", this._keyDown.bind(this));
@@ -41,6 +44,10 @@ Presentation.prototype._build = function() {
 	var all = document.getElementsByTagName("*");
 	for (var i=0;i<all.length;i++) {
 		var elm = all[i];
+		if (elm.lang) {
+			var index = this._languages.indexOf(elm.lang);
+			if (index == -1) { this._languages.push(elm.lang); }
+		}
 		if (OZ.DOM.hasClass(elm, "slide")) { 
 			var slide = new Slide(this, elm);
 			this._slides.push(slide); 
@@ -60,8 +67,9 @@ Presentation.prototype._build = function() {
 	"<tr><td>First slide</td><td>Home</td></tr>" + 
 	"<tr><td>Last slide</td><td>End</td></tr>" + 
 	"<tr><td>Toggle overview</td><td>O</td></tr>" + 
+	"<tr><td>Cycle language</td><td>L</td></tr>" + 
 	"</tbody></table>" + 
-	"<p>This is <a href='http://ondras.zarovi.cz/slides/'>Slides v2</a>, © 2008 &ndash; " + (new Date().getFullYear()) + " <a href='http://ondras.zarovi.cz/'>Ondřej Žára</a></p>";
+	"<p>This is <a href='http://ondras.zarovi.cz/slides/'>Slides v2</a>, © 2008&ndash;" + (new Date().getFullYear()) + " <a href='http://ondras.zarovi.cz/'>Ondřej Žára</a></p>";
 	this._help.style.display = "none";
 	document.body.appendChild(this._help);
 	this._resize();
@@ -126,6 +134,8 @@ Presentation.prototype._keyDown = function(e) {
 		case "B".charCodeAt(0): this._fontChange(this._size+1); break;
 		case "N".charCodeAt(0): this._fontNormal(); break;
 		case "S".charCodeAt(0): this._fontChange(this._size-1); break;
+		
+		case "L".charCodeAt(0): this._cycleLanguage(); break;
 
 		case 191: this._toggleHelp(); break;
 		
@@ -135,6 +145,19 @@ Presentation.prototype._keyDown = function(e) {
 	}
 
 	OZ.Event.prevent(e);
+}
+
+Presentation.prototype._cycleLanguage = function() {
+	if (this._languages.length < 2) { return; }
+	var lang = this._languages.shift();
+	this._languages.push(lang);
+	
+	var all = document.getElementsByTagName("*");
+	for (var i=0;i<all.length;i++) {
+		var node = all[i];
+		if (!node.lang) { continue; }
+		node.style.display = (node.lang == lang ? "" : "none");
+	}
 }
 
 Presentation.prototype._toggleOverview = function() {
