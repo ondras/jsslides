@@ -1,14 +1,12 @@
-/*
- * TODO:
- * - kam nacpat citac
- */
 var Presentation = OZ.Class();
 Presentation.prototype.init = function() {
 	this._help = null;
 	this._slides = [];
 	this._index = -1;
+	this._progress = OZ.DOM.elm("div", {id:"progress"});
+	document.body.appendChild(this._progress);
 
-	this._sizes = ["50%" ,"75%", "90%", "100%" ,"120%", "150%", "200%", "250%", "350%"];
+	this._sizes = ["90%", "100%" ,"120%", "150%", "200%", "250%", "350%"];
 	this._size = -1;
 
 	this._languages = [];
@@ -19,10 +17,14 @@ Presentation.prototype.init = function() {
 	this._build();
 	this._cycleLanguage();
 	this._fontNormal();
+	this._swipe = {
+		ec: [],
+		pos: []
+	}
 	
 	OZ.Event.add(document, "keydown", this._keyDown.bind(this));
 	OZ.Event.add(window, "hashchange", this._hashChange.bind(this));
-	OZ.Event.add(window, "resize", this._resize.bind(this));
+	OZ.Event.add(document, "touchstart", this._swipeStart.bind(this));
 
 	this._goTo(this._hashToIndex());
 }
@@ -72,7 +74,6 @@ Presentation.prototype._build = function() {
 	"<p>This is <a href='http://ondras.zarovi.cz/slides/'>Slides v2</a>, © 2008&ndash;" + (new Date().getFullYear()) + " <a href='http://ondras.zarovi.cz/'>Ondřej Žára</a></p>";
 	this._help.style.display = "none";
 	document.body.appendChild(this._help);
-	this._resize();
 }
 
 Presentation.prototype._goTo = function(index, expandAll) {
@@ -89,6 +90,8 @@ Presentation.prototype._goTo = function(index, expandAll) {
 	document.title = this._title + " #"+(this._index+1); /* update title */
 	location.hash = (this._index ? "#"+(this._index+1) : ""); /* update url */
 	this._slides[this._index].show(expandAll); /* show new */
+
+	this._progress.style.width = (100 * (this._index+1) / this._slides.length) + "%";
 }
 
 
@@ -107,7 +110,7 @@ Presentation.prototype._toggleHelp = function() {
 }
 
 Presentation.prototype._fontNormal = function() {
-	this._fontChange(this._sizes.indexOf("100%"));
+	this._fontChange(this._sizes.indexOf("150%"));
 }
 
 Presentation.prototype._fontChange = function(index) {
@@ -135,7 +138,10 @@ Presentation.prototype._keyDown = function(e) {
 		case "N".charCodeAt(0): this._fontNormal(); break;
 		case "S".charCodeAt(0): this._fontChange(this._size-1); break;
 		
-		case "L".charCodeAt(0): this._cycleLanguage(); break;
+		case "L".charCodeAt(0): 
+			if (!e.ctrlKey) { this._cycleLanguage(); }
+			return; 
+		break;
 
 		case 191: this._toggleHelp(); break;
 		
@@ -187,14 +193,35 @@ Presentation.prototype._toggleOverview = function() {
 	
 }
 
-Presentation.prototype._resize = function() {
-	var win = OZ.DOM.win();
-//	this._help.style.left = Math.round((win[0] - this._help.offsetWidth)/2) + "px";
-//	this._help.style.top = Math.round((win[1] - this._help.offsetHeight)/2) + "px";
-}
-
 Presentation.prototype._hashChange = function(e) {
 	this._goTo(this._hashToIndex());
+}
+
+Presentation.prototype._swipeStart = function(e) {
+	this._swipe.pos = [e.touches[0].clientX, e.touches[0].clientY];
+	this._swipe.ec.push(OZ.Event.add(document, "touchmove", this._swipeMove.bind(this)));
+	this._swipe.ec.push(OZ.Event.add(document, "touchend", this._swipeEnd.bind(this)));
+}
+
+Presentation.prototype._swipeMove = function(e) {
+	if (e.touches.length > 1) { return; }
+	
+	OZ.Event.prevent(e);
+	var dx = e.touches[0].clientX - this._swipe.pos[0];
+	var dy = e.touches[0].clientY - this._swipe.pos[1];
+	var r = Math.abs(dx/dy);
+	if (r > 8 && Math.abs(dx) > 150) {
+		if (dx > 0) {
+			this._goTo(this._index-1, true);
+		} else if (dx < 0) {
+			this._goTo(this._index+1, false);
+		}
+		this._swipeEnd();
+	}
+}
+
+Presentation.prototype._swipeEnd = function() {
+	while (this._swipe.ec.length) { OZ.Event.remove(this._swipe.ec.pop()); }
 }
 
 var Slide = OZ.Class();
@@ -336,5 +363,3 @@ Slide.prototype._css3prop = function(name, value) {
 Slide.prototype._click = function(e) {
 	this._presentation.goSlide(this);
 }
-
-OZ.Event.add(window, "load", function() { new Presentation(); });
