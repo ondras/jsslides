@@ -147,14 +147,14 @@ Presentation.prototype._keyDown = function(e) {
 		
 		case "O".charCodeAt(0): this._toggleOverview(); break;
       
-    case 27:
-      if (!this._help.style.display) {
-        this._help.style.display = "none";
-      } else if (this._overviewActive) {
-        this._toggleOverview();
-      }
-      break;
-		
+    	case 27:
+			if (!this._help.style.display) {
+				this._help.style.display = "none";
+			} else if (this._overviewActive) {
+				this._toggleOverview();
+			}
+		break;
+
 		default: return; break;
 	}
 
