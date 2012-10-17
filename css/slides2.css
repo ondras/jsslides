@@ -14,10 +14,18 @@ table {
 	counter-increment: slide;
 }
 
+.slide:first-of-type {
+	counter-increment: none;
+}
+
 .slide h2:before {
 	content: counter(slide);
 	opacity: 0.7;
 	margin-right: 0.5em;
+}
+
+.slide:first-of-type h2:before {
+	content: "";
 }
 
 @media screen {

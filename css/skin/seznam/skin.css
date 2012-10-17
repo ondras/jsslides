@@ -1,5 +1,5 @@
 body {
-	font-family: segoe ui, sans-serif;
+	font-family: ubuntu, segoe ui, sans-serif;
 }
 
 code, pre {
@@ -26,6 +26,10 @@ li td {
 
 ul, ol {
 	margin: 1em; 
+}
+
+li ul, li ol {
+	margin: 0.5em 1em 1em 1em;
 }
 
 p, pre {
@@ -64,8 +68,19 @@ pre {
 		color: white;
 		background-color: #fc0000;
 	}
-	
-	footer .seznam {
+
+	footer a {
+		color: #fff;
+		text-decoration: none;
+	}
+
+	footer a:nth-of-type(2n) {
+		float: right;
+		margin-right: 1em;
+	}
+
+	footer a:nth-of-type(2n+1) {
+		float: left;
 		margin-left: 1em;
 	}
 	
@@ -89,15 +104,19 @@ pre {
 		content: ""
 	}
 
+	.slide:first-of-type h2 {
+		background-image: url(logo.png);
+		background-position: 98% 50%;
+		background-repeat: no-repeat;
+	}
+
 	.slide h2 {
 		font-size: 160%;
 		margin: 0;
 		padding: 0.5em 1em;
 		background-color: #231f20;
 		color: white;
-		background-image: url(logo.png);
-		background-position: 98% 50%;
-		background-repeat: no-repeat;
+
 	}
 
 	.slide h3 {
