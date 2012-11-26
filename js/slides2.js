@@ -71,7 +71,7 @@ Presentation.prototype._build = function() {
 	"<tr><td>Toggle overview</td><td>O</td></tr>" + 
 	"<tr><td>Cycle language</td><td>L</td></tr>" + 
 	"</tbody></table>" + 
-	"<p>This is <a href='http://ondras.zarovi.cz/slides/'>Slides v2</a>, © 2008&ndash;" + (new Date().getFullYear()) + " <a href='http://ondras.zarovi.cz/'>Ondřej Žára</a></p>";
+	"<p>These are <a href='http://ondras.zarovi.cz/slides/'>Slides v2</a>, © 2008&ndash;" + (new Date().getFullYear()) + " <a href='http://ondras.zarovi.cz/'>Ondřej Žára</a></p>";
 	this._help.style.display = "none";
 	document.body.appendChild(this._help);
 }
