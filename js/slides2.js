@@ -110,7 +110,10 @@ Presentation.prototype._toggleHelp = function() {
 }
 
 Presentation.prototype._fontNormal = function() {
-	this._fontChange(this._sizes.indexOf("150%"));
+	var size = 150;
+	var r = location.search.match(/size=([0-9]+)/);
+	if (r) { size = r[1]; }
+	this._fontChange(this._sizes.indexOf(size+"%"));
 }
 
 Presentation.prototype._fontChange = function(index) {
@@ -123,6 +126,7 @@ Presentation.prototype._fontChange = function(index) {
 
 Presentation.prototype._keyDown = function(e) {	
 	switch (e.keyCode) {
+		case 9: OZ.Event.prevent(e); break; /* rozbiji chrome */
 		case 8:
 		case 37:
 		case 33: this._goPrev(); break;
