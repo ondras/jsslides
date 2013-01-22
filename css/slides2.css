@@ -10,8 +10,16 @@ table {
 	border-collapse: collapse;
 }
 
+h1 {
+	display: none;
+}
+
 .slide {
 	counter-increment: slide;
+}
+
+.slide:first-of-type {
+	counter-increment: none;
 }
 
 .slide h2:before {
@@ -20,17 +28,18 @@ table {
 	margin-right: 0.5em;
 }
 
+.slide:first-of-type h2:before {
+	content: "";
+}
+
 @media screen {
 	html, body {
 		margin: 0px;
 		height: 100%;
+		width: 100%;
 		overflow: hidden;
 	}
 	
-	h1 {
-		display: none;
-	}
-
 	.slide {
 		position: absolute;
 		width: 100%;
