@@ -10,6 +10,10 @@ table {
 	border-collapse: collapse;
 }
 
+h1 {
+	display: none;
+}
+
 .slide {
 	counter-increment: slide;
 }
@@ -32,13 +36,10 @@ table {
 	html, body {
 		margin: 0px;
 		height: 100%;
+		width: 100%;
 		overflow: hidden;
 	}
 	
-	h1 {
-		display: none;
-	}
-
 	.slide {
 		position: absolute;
 		width: 100%;

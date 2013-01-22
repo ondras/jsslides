@@ -1,11 +1,15 @@
+@import url(http://fonts.googleapis.com/css?family=Ubuntu+Mono);
+
 body {
-	font-family: ubuntu, segoe ui, sans-serif;
+	font-family: arial, sans-serif;
+	counter-reset: chapter;
 }
 
 code, pre {
 	white-space: pre;
 	font-weight: bold;
-	font-family: consolas, monospace;
+	font-family: ubuntu mono, monospace;
+	color: black;
 }
 
 li {
@@ -24,32 +28,34 @@ li td {
 	line-height: 100%;
 }
 
-ul, ol {
-	margin: 1em; 
-}
-
-li ul, li ol {
-	margin: 0.5em 1em 1em 1em;
-}
-
-p, pre {
-	margin: 1em 1.5em;
-}
-
-li p, li pre, li table {
-	margin-left: 0em;
-}
-
 pre {
 	background-color: #e0e0e0;
-	border: 1px solid #666;
-	border-radius: 10px;
+	border-radius: 16px;
 	padding: 0.5em;
 }
 
+.slide.chapter {
+	counter-increment: chapter;
+	counter-reset: slide;
+}
+
+.slide h2:before {
+	content: counter(chapter) "." counter(slide);
+	opacity: 1;
+}
+
+.slide.chapter h2:before {
+	content: counter(chapter);
+	opacity: 1;
+}
+
+.slide:nth-of-type(1) h2:before, .slide:nth-of-type(2) h2:before, .slide:last-of-type h2:before {
+	content: none;
+}
+
 @media screen {
-	.slide.before, .slide.after, .overview .section.before, .overview .section.after {
-		opacity: 1;
+	body {
+		color: #3c3c3c;
 	}
 
 	code, pre {
@@ -57,73 +63,127 @@ pre {
 	}
 
 	footer {
-		font-family: arial, sans-serif;
-		font-weight: bold;
 		position: fixed;
 		bottom: 0px;
 		left: 0px;
 		width: 100%;
 		line-height: 45px;
-		font-size: 20px;
+		font-size: 80%;
 		color: white;
-		background-color: #fc0000;
+		background-color: rgb(186, 13, 32);
+	}
+
+	footer span {
+		font-family: ubuntu mono, monospace;
+		font-size: 120%;
 	}
 
 	footer a {
 		color: #fff;
 		text-decoration: none;
-	}
-
-	footer a:nth-of-type(2n) {
-		float: right;
-		margin-right: 1em;
+		-webkit-transition: opacity 1s;
+		-moz-transition: opacity 1s;
+		-o-transition: opacity 1s;
+		transition: opacity 1s;
+		transition: opacity 1s;
 	}
 
 	footer a:nth-of-type(2n+1) {
+		float: right;
+		margin-right: 2.5em;
+	}
+
+	footer a:nth-of-type(2n) {
 		float: left;
-		margin-left: 1em;
+		margin-left: 2.5em;
 	}
-	
-	.slide:first-of-type:after {
-		width: 100%;
-		height: 216px;
+
+	.slide.current:nth-of-type(1) ~ footer > *, .slide.chapter.current ~ footer > * {
+		opacity: 0;
+	}
+
+	.slide:first-of-type img:nth-of-type(1) {
 		position: absolute;
-		right: 0;
 		bottom: 45px;
-		background: url(pes.png) 50% 50% no-repeat;
-		content: ""
+		left: 0px;
+		height: 14em;
 	}
-	
+
+	.slide:first-of-type img:nth-of-type(2) {
+		position: absolute;
+		bottom: 90px;
+		right: 45px;
+	}
+
 	.slide:last-of-type:after {
 		width: 100%;
 		height: 330px;
 		position: absolute;
 		right: 0;
+		top: 10%;
+		background: url(seznam2.png) 50% 50% no-repeat;
+		content: "";
+	}
+	
+	.slide:last-of-type p {
+		position: absolute;
+		left: 0;
 		bottom: 45px;
-		background: url(question-mark.jpg) 50% 50% no-repeat;
-		content: ""
 	}
 
-	.slide:first-of-type h2 {
-		background-image: url(logo.png);
-		background-position: 98% 50%;
-		background-repeat: no-repeat;
+	.slide > * {
+		margin-left: 2em;
+		margin-right: 2em;
+	}
+	
+	.slide > img { 
+		margin: 0;
+	}
+	
+	.slide ul, .slide ol {
+		padding-left: 1.1em;
 	}
 
 	.slide h2 {
-		font-size: 160%;
-		margin: 0;
-		padding: 0.5em 1em;
-		background-color: #231f20;
-		color: white;
-
+		font-size: 200%;
+		color: black;
+		margin: 0.7em 1em;
+		color: rgb(186, 13, 32);
+	}
+	
+	.slide:first-of-type h2, .slide.chapter h2 {
+		font-size: 300%;
+		margin: 0.5em 0.667em 0.3em;
 	}
 
 	.slide h3 {
-		font-size: 140%;
-		margin: .5em 1em;
+		color: black;
+		font-size: 125%;
+		margin: 1.2em 1.6em;
 	}
 	
+	.slide.chapter {
+		background-color: rgb(186, 13, 32);
+	}
+	
+	.slide.chapter h2 {
+		color: white;
+		position: relative;
+		z-index: 2;
+	}
+	
+	.slide.chapter img {
+		position: absolute;
+		right: 0px;
+		bottom: 0px;
+		height: 20em;
+		z-index: 1;
+	}
+
+	.slide.before, .slide.after, .overview .section.before, .overview .section.after {
+		opacity: 1;
+	}
+
 	.slide .section.after {
 		opacity: 0.1;
 	}
@@ -153,4 +213,17 @@ pre {
 	.overview .slide.current, .overview .slide:hover {
 		background-color: #eee;
 	}
+	
+	.overview .slide:after {
+		content: counter(chapter) "." counter(slide);
+	}
+
+	.overview .slide.chapter:after {
+		content: counter(chapter);
+	}
+
+	.overview .slide:nth-of-type(1):after, .overview .slide:nth-of-type(2):after, .overview .slide:last-of-type:after {
+		content: none;
+	}
+	
 }
