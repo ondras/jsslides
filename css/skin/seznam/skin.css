@@ -99,6 +99,10 @@ pre {
 		margin-left: 2.5em;
 	}
 
+	.slide {
+		z-index: 1;
+	}
+
 	.slide.current:nth-of-type(1) ~ footer > *, .slide.chapter.current ~ footer > * {
 		opacity: 0;
 	}
