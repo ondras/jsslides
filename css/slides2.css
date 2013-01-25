@@ -22,16 +22,6 @@ h1 {
 	counter-increment: none;
 }
 
-.slide h2:before {
-	content: counter(slide);
-	opacity: 0.7;
-	margin-right: 0.5em;
-}
-
-.slide:first-of-type h2:before {
-	content: "";
-}
-
 @media screen {
 	html, body {
 		margin: 0px;
@@ -85,10 +75,6 @@ h1 {
 		-webkit-transform-origin: 0 0;
 	}
 	
-	.overview .slide:after {
-		content: counter(slide);
-	}
-
 	#help {
 		left: 50%;
 		top: 50%;

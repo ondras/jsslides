@@ -42,6 +42,7 @@ pre {
 .slide h2:before {
 	content: counter(chapter) "." counter(slide);
 	opacity: 1;
+	margin-right: 0.5em;
 }
 
 .slide.chapter h2:before {
