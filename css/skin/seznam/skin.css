@@ -86,7 +86,6 @@ pre {
 		-moz-transition: opacity 1s;
 		-o-transition: opacity 1s;
 		transition: opacity 1s;
-		transition: opacity 1s;
 	}
 
 	footer a:nth-of-type(2n+1) {
