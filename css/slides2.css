@@ -42,11 +42,11 @@ h1 {
 		-moz-transform: translate(0, 0);
 		-webkit-transform: translate(0, 0);
 
-		transition: transform 500ms, opacity 500ms;
-		-o-transition: -o-transform 500ms, opacity 500ms;
-		-ms-transition: -ms-transform 500ms, opacity 500ms;
-		-moz-transition: -moz-transform 500ms, opacity 500ms;
-		-webkit-transition: -webkit-transform 500ms, opacity 500ms;
+		transition: transform 500ms;
+		-o-transition: -o-transform 500ms;
+		-ms-transition: -ms-transform 500ms;
+		-moz-transition: -moz-transform 500ms;
+		-webkit-transition: -webkit-transform 500ms;
 	}
 
 	.slide.before {
@@ -55,7 +55,6 @@ h1 {
 		-ms-transform: translate(-100%, 0);
 		-moz-transform: translate(-100%, 0);
 		-webkit-transform: translate(-100%, 0);
-		opacity: 0;
 	}
 
 	.slide.after {
@@ -64,7 +63,6 @@ h1 {
 		-ms-transform: translate(100%, 0);
 		-moz-transform: translate(100%, 0);
 		-webkit-transform: translate(100%, 0);
-		opacity: 0;
 	}
 
 	.overview footer {
@@ -73,7 +71,6 @@ h1 {
 
 	.overview .slide {
 		cursor: pointer;
-		opacity: 1;
 	}
 	
 	#help {

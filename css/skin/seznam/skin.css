@@ -6,7 +6,6 @@ body {
 }
 
 code, pre {
-	white-space: pre;
 	font-weight: bold;
 	font-family: ubuntu mono, monospace;
 	color: black;
@@ -41,13 +40,11 @@ pre {
 
 .slide h2:before {
 	content: counter(chapter) "." counter(slide);
-	opacity: 1;
 	margin-right: 0.5em;
 }
 
 .slide.chapter h2:before {
 	content: counter(chapter);
-	opacity: 1;
 }
 
 .slide:nth-of-type(1) h2:before, .slide:nth-of-type(2) h2:before, .slide:last-of-type h2:before {
@@ -150,7 +147,6 @@ pre {
 
 	.slide h2 {
 		font-size: 200%;
-		color: black;
 		margin: 0.7em 1em;
 		color: rgb(186, 13, 32);
 	}
@@ -184,15 +180,11 @@ pre {
 		z-index: 1;
 	}
 
-	.slide.before, .slide.after, .overview .section.before, .overview .section.after {
-		opacity: 1;
-	}
-
 	.slide .section.after {
 		opacity: 0.1;
 	}
-	
-	.slide .section.before {
+
+	.overview .section.after {
 		opacity: 1;
 	}
 
