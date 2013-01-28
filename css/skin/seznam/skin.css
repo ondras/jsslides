@@ -1,4 +1,4 @@
-@import url(http://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700);
+@import url(http://fonts.googleapis.com/css?family=Inconsolata:400,700);
 
 body {
 	font-family: arial, sans-serif;
@@ -7,7 +7,7 @@ body {
 
 code, pre {
 	font-weight: bold;
-	font-family: ubuntu mono, monospace;
+	font-family: inconsolata, monospace;
 	color: black;
 }
 
@@ -72,7 +72,7 @@ pre {
 	}
 
 	footer span {
-		font-family: ubuntu mono, monospace;
+		font-family: inconsolata, monospace;
 		font-size: 120%;
 	}
 
