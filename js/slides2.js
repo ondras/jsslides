@@ -152,6 +152,7 @@ Presentation.prototype._keyDown = function(e) {
 			return; 
 		break;
 
+		case 173:
 		case 191: this._toggleHelp(); break;
 		
 		case "O".charCodeAt(0): this._toggleOverview(); break;
