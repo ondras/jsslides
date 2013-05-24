@@ -6,6 +6,7 @@
 			}
 		break;
 
+		case 173:
 		case 191: this._toggleHelp(); break;
 
 Presentation.prototype._toggleHelp = function() {

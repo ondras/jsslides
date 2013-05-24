@@ -1,0 +1,9 @@
+@media screen {
+	.overview footer {
+		display: none;
+	}
+
+	.overview .slide {
+		cursor: pointer;
+	}
+}

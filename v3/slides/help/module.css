@@ -1,0 +1,44 @@
+@media screen {
+	#help {
+		left: 50%;
+		top: 50%;
+		position: fixed;
+		z-index: 1;
+		transform: translate(-50%, -50%);
+		-o-transform: translate(-50%, -50%);
+		-ms-transform: translate(-50%, -50%);
+		-moz-transform: translate(-50%, -50%);
+		-webkit-transform: translate(-50%, -50%);
+		color: white;
+		text-shadow: 0px 1px 1px black;
+		background-color: rgba(100, 100, 100, 0.9);
+		border-radius: 20px;
+		padding: 1em;
+	}
+	
+	#help h2 {
+		font-size: 120%;
+		text-align: center;
+	}
+
+	#help p {
+		text-align: center;
+	}
+	
+	#help a {
+		color: white;
+	}
+	
+	#help table {
+		margin: 0 auto;
+	}
+	
+	#help td {
+		padding: 0.3em 1em;
+	}
+	
+	#help td:last-child {
+		text-align: right;
+		font-weight: bold;
+	}
+}

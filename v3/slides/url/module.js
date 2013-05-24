@@ -9,6 +9,7 @@ Slides.addChangeListener(function(e) {
 		var re = location.hash.match(/#?([0-9]+)$/)
 		if (re) { index = parseInt(re[1])-1; }
 		var slide = Slides.slides[index];
+		if (slide == Slides.current) { return; }
 		if (slide) { Slides.show(slide); }
 	}
 	window.addEventListener("hashchange", load);

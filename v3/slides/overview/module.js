@@ -28,8 +28,8 @@ Presentation.prototype._toggleOverview = function() {
 		for (var i=0; i<this._slides.length;i++) {
 			var x = i % count;
 			var y = Math.floor(i / count);
-			x += (x+1)*padding;
-			y += (y+1)*padding;
+			x += (x+1)*padding + 0.5;
+			y += (y+1)*padding + 0.5;
 			this._slides[i].beginOverview(scale, x, y);
 		}
 	}

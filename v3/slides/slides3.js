@@ -97,14 +97,17 @@ var Slides = {
 			break;
 
 			case "keydown":
+				if (e.keyCode == 9) { 
+					e.preventDefault();
+					return;
+				}
 				for (var i=0;i<this._listeners.key.length;i++) {
 					var item = this._listeners.key[i];
-					if (item.keys.indexOf(e.keyCode) != -1) { item.listener(); }
+					if (item.keys.indexOf(e.keyCode) != -1) { item.listener(e); }
 				}
 			break;
-		}
-
-	}
+		} /* switch */
+	} /* handleEvent */
 };
 window.addEventListener("load", Slides);
 document.addEventListener("keydown", Slides);
@@ -148,10 +151,10 @@ Slide.prototype.hide = function() {
 Slide.prototype.show = function(expandAll) {
 	this._node.classList.add("current");
 
-	var sectionIndex = (expandAll ? this._sections.length-1 : 0);
+	this._index = (expandAll ? this._sections.length-1 : 0);
 	for (var i=0;i<this._sections.length;i++) {
 		var section = this._sections[i];
-		if (i == sectionIndex) {
+		if (i == this._index) {
 			section.classList.add("current");
 		} else {
 			section.classList.remove("current");
@@ -180,7 +183,7 @@ Slide.prototype.prev = function() {
 Slide.prototype.beginOverview = function(scale, x, y) {
 	x = Math.round(x*100) + "%";
 	y = Math.round(y*100) + "%";
-	this._css3prop("transform", "scale(" + scale + ") translate(" + x + ", " + y + ")");
+	this._css3prop("transform", "translate(-50%, -50%) scale(" + scale + ") translate(" + x + ", " + y + ")");
 	
 	var border = OZ.Style.get(this._elm, "borderLeftWidth");
 	border = parseInt(border) || 0;

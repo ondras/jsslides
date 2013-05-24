@@ -6,7 +6,10 @@
 	this._size = -1;
 
 Presentation.prototype._fontNormal = function() {
-	this._fontChange(this._sizes.indexOf("150%"));
+	var size = 150;
+	var r = location.search.match(/size=([0-9]+)/);
+	if (r) { size = r[1]; }
+	this._fontChange(this._sizes.indexOf(size+"%"));
 }
 
 Presentation.prototype._fontChange = function(index) {
