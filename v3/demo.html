@@ -1,0 +1,111 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+<!--
+		<link rel="stylesheet" type="text/css" href="syntax/syntax.css" />
+		<link rel="stylesheet" type="text/css" href="css/slides2.css"/>
+		<link rel="stylesheet" type="text/css" href="css/skin/seznam/skin.css"/>
+		<meta name="viewport" content="width=device-width,user-scalable=0" />
+	-->
+		<title>Mapy API známé i neznámé</title>
+	</head>
+	<body>
+		
+<h1>Mapy API známé i neznámé</h1>
+
+<section class="slide">
+	<h2>Mapy API známé i neznámé</h2>
+	<h3>Aneb exkurz po zapadlých koutech republiky</h3>
+	<p>Ondřej Žára, Seznam.cz</p>
+	<img src="css/skin/seznam/pes1.png" />
+	<img src="css/skin/seznam/seznam1.png" />
+</section>
+
+<section class="slide">
+	<h2>O čem to bude?</h2>
+	<ul>
+		<li>Seznam Mapy API jako nástroj pro vložení mapy do stránky</li>
+		<li>Připomenutí pokročilejších případů použití</li>
+		<li>Průzkum odlehlejších částí naší vlasti</li>
+	</ul>
+</section>
+
+<section class="slide">
+	<h2>"Chytrá" vrstva</h2>
+	<ul class="sections">
+		<li>Meta-vrstva, která podle přiblížení mění podklady (základní / letecký / šikmý)</li>
+		<li>Konstanty <code>SMap.DEF_SMART_*</code></li>
+		<li>Možnost zapnutí popisků na leteckém podkladu</li>
+		<li><a href="examples/1/">Ukázka</a></li>
+	</ul>
+	<pre class="section" data-syntax="js">
+var mapa = new SMap(...);
+var vrstva = mapa.addDefaultLayer(SMap.DEF_SMART_BASE)
+vrstva.setHybrid(true);
+vrstva.enable();</pre>
+</section>
+
+<section class="slide">
+	<h2>Turistická vrstva</h2>
+	<ul class="sections">
+		<li>Varianta SMART vrstvy se zapínatelnými turistickými a cyklistickými trasami</li>
+		<li><a href="examples/2/">Ukázka</a></li>
+	</ul>
+	<pre class="section" data-syntax="js">
+var vrstva = mapa.addDefaultLayer(SMap.DEF_SMART_TURIST);
+vrstva.setTrail(true);
+vrstva.setBike(true);
+vrstva.enable();</pre>
+</section>
+
+
+<section class="slide">
+	<h2>Geokódování</h2>
+	<ul class="sections">
+		<li>FIXME</li>
+	</ul>
+</section>
+
+<section class="slide">
+	<h2>Reverzní geokódování</h2>
+	<ul class="sections">
+		<li>FIXME</li>
+	</ul>
+</section>
+
+<section class="slide">
+	<h2>Hledání trasy</h2>
+	<ul class="sections">
+		<li>FIXME</li>
+	</ul>
+</section>
+
+<section class="slide">
+	<h2>Shluky značek</h2>
+	<ul class="sections">
+		<li>FIXME</li>
+	</ul>
+</section>
+
+<section class="slide">
+	<h2>GPX a KML</h2>
+	<ul class="sections">
+		<li>FIXME</li>
+	</ul>
+</section>
+
+<section class="slide">
+	<p><strong>Prostor pro otázky</strong><br/>
+	Ondřej Žára, Webmaster, <a href="mailto:ondrej.zara@firma.seznam.cz">ondrej.zara@firma.seznam.cz</a></p>
+</section>
+
+<footer>
+	<a href="http://twitter.com/0ndras">@<span>0</span>ndras</a>
+	<a href="http://www.seznam.cz/">www.seznam.cz</a>
+</footer>
+
+<script src="slides/slides3.js" type="text/javascript"></script>
+
+</body>
+</html>
