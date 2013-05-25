@@ -225,9 +225,8 @@ Slides.modules.progress = {
 	template: "%n/%c",
 	parent: document.querySelector("footer") || document.body
 };
-
-/*		skin: "",
-		language: "en",
-		overview: 1,
+Slides.modules.skin = "seznam";
+Slides.modules.language = ["en"];
+/*		overview: 1,
 		syntax: 1,
 		touch: 1 */
