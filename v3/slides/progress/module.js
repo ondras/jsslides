@@ -1,3 +1,12 @@
-	this._progress = OZ.DOM.elm("div", {id:"progress"});
-	document.body.appendChild(this._progress);
-		this._progress.style.width = (100 * (this._index+1) / this._slides.length) + "%";
+(function() {
+	var progress = document.createElement("div");
+	progress.id = "progress";
+	Slides.modules.progress.parent.appendChild(progress);
+	var listener = function() {
+		var index = Slides.slides.indexOf(Slides.current);
+		progress.style.width = (100 * (index+1) / Slides.slides.length) + "%";
+		progress.innerHTML = Slides.format(Slides.modules.progress.template);
+	}
+	Slides.addChangeListener(listener);
+	listener();
+})();

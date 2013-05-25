@@ -1,15 +1,5 @@
 var Slides = {
-	modules: {
-		keyboard: 1,
-		url: 1,
-/*		skin: "",
-		language: "en",
-		overview: 1,
-		progress: 1,
-		syntax: 1,
-		title: 1,
-		touch: 1 */
-	},
+	modules: {},
 	slides: [],
 	current: null,
 
@@ -76,6 +66,19 @@ var Slides = {
 	getKeyListeners: function() {
 		return this._listeners.key;
 	},
+	
+	format: function(template) {
+		var replacements = {
+			"s": this.current.getNode().querySelector("h2, h3").innerHTML,
+			"t": document.body.querySelector("h1").innerHTML,
+			"n": this.slides.indexOf(Slides.current) + 1,
+			"c": this.slides.length
+		};
+		
+		return template.replace(/%([a-z])/g, function(match, letter) {
+			return replacements[letter] || match;
+		});
+	},
 
 	handleEvent: function(e) {
 		switch (e.type) {
@@ -111,7 +114,6 @@ var Slides = {
 };
 window.addEventListener("load", Slides);
 document.addEventListener("keydown", Slides);
-
 
 var Slide = function(node) {
 	this._node = node;
@@ -214,3 +216,18 @@ Slide.prototype._css3prop = function(name, value) {
 Slide.prototype._click = function(e) {
 	this._presentation.goSlide(this);
 }
+
+/* default module configuration */
+Slides.modules.keyboard = true;
+Slides.modules.url = true;
+Slides.modules.title = "%t"; /* "%t %s %n %c"; */
+Slides.modules.progress = {
+	template: "%n/%c",
+	parent: document.querySelector("footer") || document.body
+};
+
+/*		skin: "",
+		language: "en",
+		overview: 1,
+		syntax: 1,
+		touch: 1 */
