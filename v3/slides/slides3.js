@@ -220,13 +220,14 @@ Slide.prototype._click = function(e) {
 /* default module configuration */
 Slides.modules.keyboard = true;
 Slides.modules.url = true;
-Slides.modules.title = "%t"; /* "%t %s %n %c"; */
+Slides.modules.title = "%t"; /* %t %s %n %c" */
 Slides.modules.progress = {
 	template: "%n/%c",
 	parent: document.querySelector("footer") || document.body
 };
 Slides.modules.skin = "seznam";
 Slides.modules.language = ["en"];
+Slides.modules.transition = "horizontal"; /* none vertical horizontal blend corner FIXME */
 /*		overview: 1,
 		syntax: 1,
 		touch: 1 */

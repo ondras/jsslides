@@ -1,0 +1,5 @@
+@media screen {
+	.slide:not(.current) {
+		display: none;
+	}
+}

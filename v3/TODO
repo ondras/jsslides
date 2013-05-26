@@ -4,6 +4,8 @@
 - overview
 - fontsize
 - help
-- language
 - syntax
 - touch
+- comments
+- remote (master/slave)?
+- transition
