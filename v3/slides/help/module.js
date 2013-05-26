@@ -1,32 +1,88 @@
-    	case 27:
-			if (!this._help.style.display) {
-				this._help.style.display = "none";
-			} else if (this._overviewActive) {
-				this._toggleOverview();
+(function() {
+	var active = false;
+	var node = document.createElement("div");
+	node.id = "help";
+	node.className = "hidden";
+	document.body.appendChild(node);
+	
+	var keyMap = {
+		8: "Backspace",
+		32: "Space",
+		33: "PgUp",
+		34: "PgDown",
+		35: "End",
+		36: "Home",
+		
+		37: "←",
+		38: "↑",
+		39: "→",
+		40: "↓",
+		
+		
+		
+	};
+	
+	var build = function() {
+		var str = "";
+		var listeners = Slides.getKeyListeners();
+		var rows = [];
+
+		for (var i=0;i<listeners.length;i++) {
+			var listener = listeners[i];
+			var label = listener.label;
+			if (!label) { continue; }
+			var index = -1;
+			for (var j=0;j<rows.length;j++) {
+				if (rows[j].label == label) { index = j; }
 			}
-		break;
+			if (index == -1) {
+				index = rows.length;
+				rows.push({label:label, keys:[]});
+			}
+			rows[index].keys = rows[index].keys.concat(listener.keys);
+		}
+		
+		for (var i=0;i<rows.length;i++) {
+			str += "<tr><td>" + rows[i].label + "</td><td>";
+			var keys = rows[i].keys;
+			for (var j=0;j<keys.length;j++) {
+				var key = keys[j];
+				if (typeof(key) == "string") { continue; }
+				keys[j] = keyMap[key] || String.fromCharCode(key);
+			}
+			str += keys.join(" / ");
+			str += "</td></tr>";
+		}
 
-		case 173:
-		case 191: this._toggleHelp(); break;
+		return str;
+	}
+	
+	var open = function() {
+		if (active) { return; }
+		active = true;
+		
+		var url = location.href;
+		var hash = url.lastIndexOf("#");
+		if (hash > -1) { url = url.substring(0, hash); }
+		
+		var str = "<h2>" + url + "</h2><table>" + build();
+		str += "</table><p>This is <a href='http://ondras.zarovi.cz/slides/'>Slides v3</a>, © 2013&ndash;" + (new Date().getFullYear()) + " <a href='http://ondras.zarovi.cz/'>Ondřej Žára</a></p>";
 
-Presentation.prototype._toggleHelp = function() {
-	this._help.style.display = (this._help.style.display ? "" : "none");
-}
-	this._help = OZ.DOM.elm("div", {id:"help"});
-	var url = location.href;
-	var hash = url.lastIndexOf("#");
-	if (hash > -1) { url = url.substring(0, hash); }
-	this._help.innerHTML = "<h2>" + url + "</h2>" + 
-	"<table><tbody>" +
-	"<tr><td>Toggle help</td><td>?</td></tr>" + 
-	"<tr><td>Change font size</td><td>B/S/N</td></tr>" + 
-	"<tr><td>Previous slide</td><td>Left/PgUp/Backspace</td></tr>" + 
-	"<tr><td>Next slide</td><td>Right/PgDown/Space</td></tr>" + 
-	"<tr><td>First slide</td><td>Home</td></tr>" + 
-	"<tr><td>Last slide</td><td>End</td></tr>" + 
-	"<tr><td>Toggle overview</td><td>O</td></tr>" + 
-	"<tr><td>Cycle language</td><td>L</td></tr>" + 
-	"</tbody></table>" + 
-	"<p>This is <a href='http://ondras.zarovi.cz/slides/'>Slides v2</a>, © 2008&ndash;" + (new Date().getFullYear()) + " <a href='http://ondras.zarovi.cz/'>Ondřej Žára</a></p>";
-	this._help.style.display = "none";
-	document.body.appendChild(this._help);
+		node.innerHTML = str;
+		node.classList.toggle("hidden");
+	}
+	
+	var close = function() {
+		if (!active) { return; }
+		active = false;
+		node.classList.toggle("hidden");
+	}
+
+	var toggle = function() {
+		active ? close() : open();
+	}
+	
+	Slides.addKeyListener(toggle, "?", "Toggle help");
+	Slides.addKeyListener(close, 27);
+	Slides.addStylesheet("help/module.css");
+})();

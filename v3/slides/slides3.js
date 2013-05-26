@@ -69,12 +69,11 @@ var Slides = {
 	
 	format: function(template) {
 		var replacements = {
-			"s": this.current.getNode().querySelector("h2, h3").innerHTML,
+			"s": this.current.getNode().querySelector("h2, h3, strong, em").innerHTML,
 			"t": document.body.querySelector("h1").innerHTML,
 			"n": this.slides.indexOf(Slides.current) + 1,
 			"c": this.slides.length
 		};
-		
 		return template.replace(/%([a-z])/g, function(match, letter) {
 			return replacements[letter] || match;
 		});
@@ -100,13 +99,16 @@ var Slides = {
 			break;
 
 			case "keydown":
+			case "keypress":
 				if (e.keyCode == 9) { 
 					e.preventDefault();
 					return;
 				}
 				for (var i=0;i<this._listeners.key.length;i++) {
 					var item = this._listeners.key[i];
-					if (item.keys.indexOf(e.keyCode) != -1) { item.listener(e); }
+					var code = e.keyCode;
+					if (e.type == "keypress") { code = String.fromCharCode(e.charCode).toUpperCase(); }
+					if (item.keys.indexOf(code) != -1) { item.listener(e); }
 				}
 			break;
 		} /* switch */
@@ -114,6 +116,7 @@ var Slides = {
 };
 window.addEventListener("load", Slides);
 document.addEventListener("keydown", Slides);
+document.addEventListener("keypress", Slides);
 
 var Slide = function(node) {
 	this._node = node;
@@ -124,8 +127,6 @@ var Slide = function(node) {
 	this._findSections(node);
 	this.next(); /* show first section */
 }
-
-Slide.prototype._prefixes = ["", "Moz", "Webkit", "O", "ms"];
 
 Slide.prototype.getNode = function() {
 	return this._node;
@@ -182,52 +183,22 @@ Slide.prototype.prev = function() {
 	return true;
 }
 
-Slide.prototype.beginOverview = function(scale, x, y) {
-	x = Math.round(x*100) + "%";
-	y = Math.round(y*100) + "%";
-	this._css3prop("transform", "translate(-50%, -50%) scale(" + scale + ") translate(" + x + ", " + y + ")");
-	
-	var border = OZ.Style.get(this._elm, "borderLeftWidth");
-	border = parseInt(border) || 0;
-	border = Math.round(border/scale);
-	this._elm.style.borderWidth = border+"px";
-	
-	this._event = OZ.Event.add(this._elm, "click", this._click.bind(this));
-}
-
-Slide.prototype.endOverview = function(scale, x, y) {
-	this._css3prop("transform", "");
-	this._elm.style.borderWidth = "";
-	OZ.Event.remove(this._event);
-}
-
-Slide.prototype._css3prop = function(name, value) {
-	for (var i=0;i<this._prefixes.length;i++) {
-		var n = this._prefixes[i];
-		if (n) {
-			n += name.charAt(0).toUpperCase() + name.substring(1);
-		} else {
-			n += name;
-		}
-		this._elm.style[n] = value;
-	}
-}
-
-Slide.prototype._click = function(e) {
-	this._presentation.goSlide(this);
-}
-
 /* default module configuration */
 Slides.modules.keyboard = true;
 Slides.modules.url = true;
-Slides.modules.title = "%t"; /* %t %s %n %c" */
+Slides.modules.title = "(%n) %t"; /* %t %s %n %c" */
 Slides.modules.progress = {
 	template: "%n/%c",
 	parent: document.querySelector("footer") || document.body
 };
 Slides.modules.skin = "seznam";
 Slides.modules.language = ["en"];
-Slides.modules.transition = "horizontal"; /* none vertical horizontal blend corner FIXME */
-/*		overview: 1,
+Slides.modules.transition = "horizontal"; /* none vertical horizontal blend corner */
+Slides.modules.overview = true;
+Slides.modules.help = true;
+Slides.modules.fontsize = true;
+
+/*
 		syntax: 1,
-		touch: 1 */
+		touch: 1 
+*/

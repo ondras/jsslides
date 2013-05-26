@@ -1,0 +1,36 @@
+@media screen {
+	.slide {
+		transition: transform 500ms;
+		-o-transition: -o-transform 500ms;
+		-ms-transition: -ms-transform 500ms;
+		-moz-transition: -moz-transform 500ms;
+		-webkit-transition: -webkit-transform 500ms;
+		
+		-webkit-transform-origin: 0 0;
+		-moz-transform-origin: 0 0;
+		-ms-transform-origin: 0 0;
+		-o-transform-origin: 0 0;
+		transform-origin: 0 0;
+	}
+
+	.slide:not(.current) {
+		transform: rotate(90deg);
+	}
+
+	.slide.current ~ .slide {
+		transform: none;
+		visibility: hidden;
+	}
+	
+	.overview .slide {
+		-webkit-transform-origin: 50% 50% !important;
+		-moz-transform-origin: 50% 50% !important;
+		-ms-transform-origin: 50% 50% !important;
+		-o-transform-origin: 50% 50% !important;
+		transform-origin: 50% 50% !important;
+	}
+
+	.overview .slide.current ~ .slide {
+		visibility: visible;
+	}
+}

@@ -1,0 +1,25 @@
+@media screen {
+	.slide {
+		transition: transform 500ms;
+		-o-transition: -o-transform 500ms;
+		-ms-transition: -ms-transform 500ms;
+		-moz-transition: -moz-transform 500ms;
+		-webkit-transition: -webkit-transform 500ms;
+	}
+
+	.slide:not(.current) {
+		transform: translate(0, -100%);
+		-o-transform: translate(0, -100%);
+		-ms-transform: translate(0, -100%);
+		-moz-transform: translate(0, -100%);
+		-webkit-transform: translate(0, -100%);
+	}
+
+	.slide.current ~ .slide {
+		transform: translate(0, 100%);
+		-o-transform: translate(0, 100%);
+		-ms-transform: translate(0, 100%);
+		-moz-transform: translate(0, 100%);
+		-webkit-transform: translate(0, 100%);
+	}
+}

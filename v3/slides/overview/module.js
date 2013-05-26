@@ -1,37 +1,79 @@
-      
-    	case 27:
-			if (!this._help.style.display) {
-				this._help.style.display = "none";
-			} else if (this._overviewActive) {
-				this._toggleOverview();
+(function() {
+	var active = false;
+	
+	var click = function(e) {
+		var node = e.target;
+		while (node) {
+			if (node.classList.contains("slide")) {
+				for (var i=0;i<Slides.slides.length;i++) {
+					var slide = Slides.slides[i];
+					if (slide.getNode() == node) {
+						Slides.show(slide);
+						close();
+						return;
+					}
+				}
 			}
-		break;
-		
-		case "O".charCodeAt(0): this._toggleOverview(); break;
-
-Presentation.prototype._toggleOverview = function() {
-	if (this._overviewActive) {
-		this._overviewActive = false;
-		OZ.DOM.removeClass(document.body, "overview");
-		for (var i=0; i<this._slides.length;i++) {
-			this._slides[i].endOverview();
+			node = node.parentNode;
 		}
-	} else {
-		this._overviewActive = true;
-		OZ.DOM.addClass(document.body, "overview");
-		var count = Math.ceil(Math.sqrt(this._slides.length));
+	}
+	
+	var transform = function(node, value) {
+		node.style.WebkitTransform = value;
+		node.style.msTransform = value;
+		node.style.transform = value;
+	}
+	
+	var open = function() {
+		if (active) { return; }
+		active = true;
+		document.body.classList.add("overview");
+		document.body.addEventListener("click", click);
+
+		var len = Slides.slides.length;
+		var count = Math.ceil(Math.sqrt(len));
 		var blanks = count+1;
 		var padding = 0.2;
 		var amount = count + blanks*padding;
 		var scale = 1/amount;
 		
-		for (var i=0; i<this._slides.length;i++) {
+		for (var i=0;i<Slides.slides.length;i++) {
+			var node = Slides.slides[i].getNode();
 			var x = i % count;
 			var y = Math.floor(i / count);
 			x += (x+1)*padding + 0.5;
 			y += (y+1)*padding + 0.5;
-			this._slides[i].beginOverview(scale, x, y);
+			x = Math.round(x*100) + "%";
+			y = Math.round(y*100) + "%";
+
+			transform(node, "translate(-50%, -50%) scale(" + scale + ") translate(" + x + ", " + y + ")");
+			
+			var border = window.getComputedStyle(node).borderLeftWidth;
+			border = parseInt(border) || 0;
+			border = Math.round(border/scale);
+			node.style.borderWidth = border+"px";
 		}
 	}
 	
-}
+	var close = function() {
+		if (!active) { return; }
+		active = false;
+		document.body.classList.remove("overview");
+		document.body.removeEventListener("click", click);
+		
+		for (var i=0;i<Slides.slides.length;i++) {
+			var node = Slides.slides[i].getNode();
+			transform(node, "");
+			node.style.borderWidth = "";
+		}
+	}
+
+	var toggle = function() {
+		active ? close() : open();
+	}
+	
+	
+	Slides.addKeyListener(toggle, "O", "Toggle overview");
+	Slides.addKeyListener(close, 27);
+	Slides.addStylesheet("overview/module.css");
+})();      
