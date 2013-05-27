@@ -1,33 +1,39 @@
 (function() {
-	var sizes = ["90%", "100%" ,"120%", "150%", "200%", "250%", "350%"];
-	var index = -1;
+	var conf = Slides.modules.fontsize;
+
+	var set = function(index) {
+		document.body.style.fontSize = conf.sizes[index];
+	}
 	
-	var change = function(i) {
-		i = Math.max(i, 0);
-		i = Math.min(i, sizes.length-1);
-		if (i == index) { return; }
-		index = i;
-		document.body.style.fontSize = sizes[index];
+	var change = function(delta) {
+		var index = conf.sizes.indexOf(document.body.style.fontSize) || conf.sizes.indexOf(conf.normal);
+		if (index == -1) { return; }
+		index += delta;
+		index = Math.max(index, 0);
+		index = Math.min(index, conf.sizes.length-1);
+		set(index);
 	}
 	
 	var normal = function() {
-		var size = 150;
-		var r = location.search.match(/size=([0-9]+)/);
-		if (r) { size = r[1]; }
-		change(sizes.indexOf(size+"%"));
+		set(conf.sizes.indexOf(conf.normal));
 	}
 	
 	var plus = function() {
-		change(index+1);
+		change(+1);
 	}
 	
 	var minus = function() {
-		change(index-1);
+		change(-1);
 	}
 	
 	Slides.addKeyListener(plus, "B".charCodeAt(0), "Change font size");
 	Slides.addKeyListener(minus, "S".charCodeAt(0), "Change font size");
 	Slides.addKeyListener(normal, "N".charCodeAt(0), "Change font size");
 	
+	var r = location.search.match(/size=([0-9]+)/);
+	if (r) { 
+		var size = r[1] + "%"; 
+		if (conf.sizes.indexOf(size) != -1) { conf.normal = size; }
+	}
 	normal();
 })();

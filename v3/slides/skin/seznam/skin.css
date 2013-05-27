@@ -121,7 +121,7 @@ code.block {
 		right: 45px;
 	}
 
-	.slide:last-of-type:after {
+	.slide:last-of-type:before {
 		width: 100%;
 		height: 330px;
 		position: absolute;

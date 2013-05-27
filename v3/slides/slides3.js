@@ -171,20 +171,33 @@ Slide.prototype.show = function(expandAll) {
 
 Slide.prototype.next = function() {
 	if (this._index+1 >= this._sections.length) { return false; }
-
-	if (this._index != -1) { this._sections[this._index].classList.remove("current"); }
-	this._sections[++this._index].classList.add("current");
-
+	this._index++;
+	this._syncSections();
 	return true;
 }
 
 Slide.prototype.prev = function() {
 	if (this._index <= 0) { return false; }
-
-	this._sections[this._index].classList.remove("current");
-	this._sections[--this._index].classList.add("current");
-
+	this._index--;
+	this._syncSections();
 	return true;
+}
+
+Slide.prototype._syncSections = function() {
+	for (var i=0;i<this._sections.length;i++) {
+		var section = this._sections[i];
+		if (i == this._index) {
+			section.classList.add("current");
+			section.classList.remove("after");
+		} else {
+			section.classList.remove("current");
+			if (i < this._index) {
+				section.classList.remove("after");
+			} else {
+				section.classList.add("after");
+			}
+		}
+	}
 }
 
 /* default module configuration */
@@ -200,7 +213,10 @@ Slides.modules.language = ["en"];
 Slides.modules.transition = "horizontal"; /* none vertical horizontal blend corner */
 Slides.modules.overview = true;
 Slides.modules.help = true;
-Slides.modules.fontsize = true;
+Slides.modules.fontsize = {
+	sizes: ["90%", "100%" ,"120%", "150%", "200%", "250%", "350%"],
+	normal: "150%"
+};
 Slides.modules.syntax = true;
 
 /*

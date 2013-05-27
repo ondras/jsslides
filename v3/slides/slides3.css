@@ -44,10 +44,6 @@ code.block {
 		height: 100%;
 		overflow: hidden;
 	}
-	
-	.section.current ~ .section, .section.current ~ * .section {
-		display: none;
-	}
 }
 
 @media print {
