@@ -44,11 +44,19 @@ var Slides = {
 		for (var i=0;i<this._listeners.change.length;i++) { this._listeners.change[i](event); }
 	},
 
+	addScript: function(path) {
+		var script = document.createElement("script");
+		script.src = this._path + "/" + path; 
+		document.body.appendChild(script);
+		return script;
+	},
+
 	addStylesheet: function(path) {
 		var link = document.createElement("link");
 		link.rel = "stylesheet";
 		link.href = this._path + "/" + path;
 		document.body.appendChild(link);
+		return link;
 	},
 
 	addKeyListener: function(listener, keys, label) {
@@ -91,11 +99,7 @@ var Slides = {
 
 				this.show(this.slides[0]);
 
-				for (var id in this.modules) {
-					var script = document.createElement("script");
-					script.src = this._path + "/" + id + "/module.js";
-					document.body.appendChild(script);
-				}
+				for (var id in this.modules) { this.addScript(id + "/module.js"); }
 			break;
 
 			case "keydown":
@@ -197,8 +201,8 @@ Slides.modules.transition = "horizontal"; /* none vertical horizontal blend corn
 Slides.modules.overview = true;
 Slides.modules.help = true;
 Slides.modules.fontsize = true;
+Slides.modules.syntax = true;
 
 /*
-		syntax: 1,
 		touch: 1 
 */
