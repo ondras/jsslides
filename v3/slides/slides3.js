@@ -218,7 +218,4 @@ Slides.modules.fontsize = {
 	normal: "150%"
 };
 Slides.modules.syntax = true;
-
-/*
-		touch: 1 
-*/
+Slides.modules.touch = true;
