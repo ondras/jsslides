@@ -90,6 +90,14 @@ var Slides = {
 	handleEvent: function(e) {
 		switch (e.type) {
 			case "load":
+				var meta = document.querySelector("meta[name=viewport]");
+				if (!meta) {
+					var meta = document.createElement("meta");
+					meta.name = "viewport";
+					document.querySelector("head, body").appendChild(meta);
+				}
+				meta.content = "user-scalable=0,initial-scale=1";
+
 				this.addStylesheet("slides3.css");
 
 				var nodes = document.querySelectorAll(".slide");
@@ -218,4 +226,8 @@ Slides.modules.fontsize = {
 	normal: "150%"
 };
 Slides.modules.syntax = true;
-Slides.modules.touch = true;
+Slides.modules.touch = {
+	tap: true,
+	swipe: true,
+	pinch: true
+};

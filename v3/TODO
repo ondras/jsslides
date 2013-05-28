@@ -1,4 +1,6 @@
-- reskin, kbd
-- touch
-- comments
+- reskin, kbd, rem
+- comments + debug
+- time
 - remote (master/slave)?
+- hide content when loading
+- default skin
