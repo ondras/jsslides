@@ -2,11 +2,11 @@
 	var conf = Slides.modules.fontsize;
 
 	var set = function(index) {
-		document.body.style.fontSize = conf.sizes[index];
+		document.documentElement.style.fontSize = conf.sizes[index];
 	}
 	
 	var change = function(delta) {
-		var index = conf.sizes.indexOf(document.body.style.fontSize) || conf.sizes.indexOf(conf.normal);
+		var index = conf.sizes.indexOf(document.documentElement.style.fontSize) || conf.sizes.indexOf(conf.normal);
 		if (index == -1) { return; }
 		index += delta;
 		index = Math.max(index, 0);
