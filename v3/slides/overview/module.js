@@ -36,17 +36,16 @@
 		var padding = 0.2;
 		var amount = count + blanks*padding;
 		var scale = 1/amount;
-		
 		for (var i=0;i<Slides.slides.length;i++) {
 			var node = Slides.slides[i].getNode();
 			var x = i % count;
 			var y = Math.floor(i / count);
-			x += (x+1)*padding + 0.5;
-			y += (y+1)*padding + 0.5;
+			x = scale*(x + 0.5 + padding*(x+1)) - 0.5;
+			y = scale*(y + 0.5 + padding*(y+1)) - 0.5;
 			x = Math.round(x*100) + "%";
 			y = Math.round(y*100) + "%";
 
-			transform(node, "translate(-50%, -50%) scale(" + scale + ") translate(" + x + ", " + y + ")");
+			transform(node, "translate("+x+", "+y+") scale(" + scale + ")");
 			
 			var border = window.getComputedStyle(node).borderLeftWidth;
 			border = parseInt(border) || 0;

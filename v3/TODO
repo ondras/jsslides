@@ -1,6 +1,4 @@
 - reskin, kbd, rem
-- comments + debug
-- time
-- remote (master/slave)?
-- hide content when loading
+- debug: "slide x/y, remaining time ... \n comments \n next slide: xyz"
 - default skin
+- remote (master/slave)

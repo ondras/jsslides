@@ -1,7 +1,7 @@
 (function() {
 	var progress = document.createElement("div");
 	progress.id = "progress";
-	Slides.modules.progress.parent.appendChild(progress);
+	document.querySelector(Slides.modules.progress.parent).appendChild(progress);
 	var listener = function() {
 		var index = Slides.slides.indexOf(Slides.current);
 		progress.style.width = (100 * (index+1) / Slides.slides.length) + "%";

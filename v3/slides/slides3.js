@@ -1,3 +1,4 @@
+document.documentElement.style.display = "none";
 var Slides = {
 	modules: {},
 	slides: [],
@@ -107,7 +108,14 @@ var Slides = {
 
 				this.show(this.slides[0]);
 
-				for (var id in this.modules) { this.addScript(id + "/module.js"); }
+				var count = 0;
+				for (var id in this.modules) {
+					count++;
+					this.addScript(id + "/module.js").onload = function() {
+						count--;
+						if (!count) { document.documentElement.style.display = ""; }
+					}
+				}
 			break;
 
 			case "keydown":
@@ -214,7 +222,11 @@ Slides.modules.url = true;
 Slides.modules.title = "(%n) %t"; /* %t %s %n %c" */
 Slides.modules.progress = {
 	template: "%n/%c",
-	parent: document.querySelector("footer") || document.body
+	parent: "footer"
+};
+Slides.modules.time = {
+	length: 10*60*1000,
+	parent: "footer"
 };
 Slides.modules.skin = "seznam";
 Slides.modules.language = ["en"];
