@@ -1,0 +1,61 @@
+@import url(http://fonts.googleapis.com/css?family=Lato:400,700|Inconsolata:400,700&subset=latin,latin-ext);
+
+body {
+	font-family: lato, sans-serif;
+}
+
+code {
+	font-weight: bold;
+	font-family: inconsolata, monospace;
+}
+
+@media screen {
+	body {
+		background-color: #3A1C00;
+	}
+
+	footer a {
+		display: none;
+	}
+
+	#progress, #time {
+		position: fixed;
+		background-color: rgba(255, 255, 255, 0.3);
+		height: 15px;
+		-webkit-transition: width 500ms;
+		-moz-transition: width 500ms;
+		-ms-transition: width 500ms;
+		-o-transition: width 500ms;
+		transition: width 500ms;
+	}
+
+	#time {
+		bottom: 0;
+		right: 0;
+	}
+
+	#time:before {
+		content: "";
+		display: block;
+		height: 100%;
+		background-color: rgba(240, 30, 30, 0.7);
+		width: 5px;
+	}
+
+	#progress {
+		bottom: 15px;
+		left: 0;
+		color: transparent;
+	}
+
+	#progress:after {
+		content: "";
+		display: block;
+		position: absolute;
+		right: 0;
+		top: 0;
+		height: 100%;
+		background-color: rgba(30, 30, 240, 0.7);
+		width: 5px;
+	}
+}

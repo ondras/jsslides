@@ -9,5 +9,5 @@
 		var frac = elapsed / Slides.modules.time.length;
 		frac = Math.min(frac, 1);
 		time.style.width = 100*(1-frac)+"%";
-	}, 1000);
+	}, 500);
 })();

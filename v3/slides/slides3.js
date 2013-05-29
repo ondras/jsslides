@@ -232,7 +232,7 @@ Slides.modules.time = {
 	length: 10*60*1000,
 	parent: "footer"
 };
-Slides.modules.skin = "seznam";
+Slides.modules.skin = "default";
 Slides.modules.language = ["en"];
 Slides.modules.transition = "horizontal"; /* none vertical horizontal blend corner */
 Slides.modules.overview = true;
