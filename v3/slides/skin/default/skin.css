@@ -9,18 +9,30 @@ code {
 	font-family: inconsolata, monospace;
 }
 
+li {
+	padding-top: 0.5rem;
+}
+
 @media screen {
 	body {
-		background-color: #3A1C00;
+		background-color: #DE7310;
+		color: #212526;
 	}
 
-	footer a {
-		display: none;
+	.slide h2 {
+		color: #DE7310;
+		margin: 0;
+		padding: 1rem;
+		background-color: #422000;
+	}
+
+	.slide h2 ~ * {
+		margin-left: 1rem;
 	}
 
 	#progress, #time {
 		position: fixed;
-		background-color: rgba(255, 255, 255, 0.3);
+		background-color: rgba(255, 255, 255, 0.5);
 		height: 15px;
 		-webkit-transition: width 500ms;
 		-moz-transition: width 500ms;
@@ -38,7 +50,7 @@ code {
 		content: "";
 		display: block;
 		height: 100%;
-		background-color: rgba(240, 30, 30, 0.7);
+		background-color: rgba(240, 0, 0, 0.7);
 		width: 5px;
 	}
 
