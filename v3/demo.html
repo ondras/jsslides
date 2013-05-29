@@ -2,91 +2,98 @@
 <html>
 	<head>
 		<meta charset="utf-8" />
-		<title>Slides demo</title>
+		<title>JS Slides v3</title>
 		<script src="slides/slides3.js" type="text/javascript"></script>
 	</head>
 	<body>
 		
-<h1>Slides demo</h1>
+<h1>JS Slides v3</h1>
 
 <section class="slide">
-	<h2>Slides demo</h2>
-	<h3>Blablabla blablabla blablabla</h3>
-	<p>Ondřej Žára, Seznam.cz</p>
+	<h2>JS Slides v3</h2>
+	<h3>Where semantic HTML meets interactive slide deck</h3>
+	<p>Created by <a style="font-family: inconsolata, monospace" href="http://twitter.com/0ndras">@0ndras</a>. Hit <kbd>Space</kbd> or <kbd>&rarr;</kbd> to continue&hellip;</p>
 </section>
 
 <section class="slide">
-	<h2>O čem to bude?</h2>
-	<!-- comment 1 -->
+	<h2>Semantic HTML5</h2>
 	<ul>
-		<li>XXX</li>
-		<li>YYY <!-- comment 2 --></li>
-		<li>ZZZ</li>
+		<li>This page is a normal HTML document</li>
+		<li>Interactivity added by one extra script</li>
+		<li>Accessible, configurable, extensible</li>
 	</ul>
 </section>
 
 <section class="slide">
-	<h2>"Chytrá" vrstva</h2>
+	<h2>Features</h2>
 	<ul class="sections">
-		<li>Meta-vrstva, která podle přiblížení mění podklady (základní / letecký / šikmý)</li>
-		<li>Konstanty <code>SMap.DEF_SMART_*</code></li>
-		<li>Možnost zapnutí popisků na leteckém podkladu</li>
-		<li><a href="examples/1/">Ukázka</a></li>
-	</ul>
-	<code class="block section" data-syntax="js">var mapa = new SMap(...);
-var vrstva = mapa.addDefaultLayer(SMap.DEF_SMART_BASE)
-vrstva.setHybrid(true);
-vrstva.enable();</code>
-</section>
-
-<section class="slide">
-	<h2>Turistická vrstva</h2>
-	<ul class="sections">
-		<li>Varianta SMART vrstvy se zapínatelnými turistickými a cyklistickými trasami</li>
-		<li><a href="examples/2/">Ukázka</a></li>
-	</ul>
-	<code class="block section" data-syntax="js">var vrstva = mapa.addDefaultLayer(SMap.DEF_SMART_TURIST);
-vrstva.setTrail(true);
-vrstva.setBike(true);
-vrstva.enable();</code>
-</section>
-
-
-<section class="slide">
-	<h2>Geokódování</h2>
-</section>
-
-<section class="slide">
-	<h2>Reverzní geokódování</h2>
-	<ul class="sections">
-		<li>FIXME</li>
+		<li>Themeable interface</li>
+		<li>Navigate slides and subsections by keyboard or touches</li>
+		<li>Adjust behavior as needed by extension modules</li>
 	</ul>
 </section>
 
 <section class="slide">
-	<h2>Hledání trasy</h2>
-	<ul class="sections">
-		<li>FIXME</li>
+	<h2>Modules</h2>
+	<ul>
+		<li>Many modules included by default</li>
+		<li>Can be configured or disabled</li>
+		<li>Writing own modules is easy (but not necessary)</li>
 	</ul>
 </section>
 
 <section class="slide">
-	<h2>Shluky značek</h2>
-	<ul class="sections">
-		<li>FIXME</li>
+	<h2>Modules: core</h2>
+	<ul>
+		<li>Help module: hit <kbd>?</kbd> to see help</li>
+		<li>Overview module: hit <kbd>O</kbd> to toggle overview mode</li>
+		<li>Keyboard module: navigate slides using intuitive controls</li>
 	</ul>
 </section>
 
 <section class="slide">
-	<h2>GPX a KML</h2>
-	<ul class="sections">
-		<li>FIXME</li>
+	<h2>Modules: visual</h2>
+	<ul>
+		<li>Font size: adjust font size using <kbd>B</kbd>, <kbd>S</kbd>, <kbd>N</kbd></li>
+		<li>Skin: define any visual property using standard CSS</li>
+		<li>Transition: pick from one of the available transition animations</li>
+		<li>Syntax: apply syntax highlighting<br/>
+			<code data-syntax="js">while (var i = 100) { i--; } // loop</code>
+		</li>
 	</ul>
 </section>
 
 <section class="slide">
-	<p><strong>Prostor pro otázky</strong><br/>
-	Ondřej Žára, Webmaster, <a href="mailto:ondrej.zara@firma.seznam.cz">ondrej.zara@firma.seznam.cz</a></p>
+	<h2>Modules: miscellaneous I</h2>
+	<ul>
+		<li>Title: adjust window title to match current slide</li>
+		<li>URL: Leverage browser history and slide permalinks</li>
+		<li>Language: switch available languages using the <kbd>L</kbd> key</li>
+	</ul>
+</section>
+
+<section class="slide">
+	<h2>Modules: miscellaneous II</h2>
+	<ul>
+		<li>Progress: display progress meter</li>
+		<li>Time: display remaining time</li>
+		<li>Touch: use tapping, swiping and pinching to emulate keyboard on touch devices</li>
+		<li>Presenter's window: hit <kbd>P</kbd> to display comments and other useful metadata in a separate window</li>
+	</ul>
+</section>
+
+<section class="slide">
+	<h2>Interested?</h2>
+	<ul>
+		<li>View this page's source</li>
+		<li>Check out the docs</li>
+		<li>Check out the code</li>
+	</ul>
+</section>
+
+<section class="slide">
+	<p><strong>Questions?</strong><br/>
+	Ondrej Zara, <a href="mailto:ondrej.zara@gmail.com">ondrej.zara@gmail.com</a></p>
 </section>
 
 <footer>
