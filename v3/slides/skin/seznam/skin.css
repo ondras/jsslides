@@ -48,11 +48,11 @@ code.block {
 	content: counter(chapter);
 }
 
-.slide:nth-of-type(1) h2:before, .slide:nth-of-type(2) h2:before, .slide:last-of-type h2:before {
+.slide:nth-of-type(1) h2:before, .slide:nth-of-type(2) h2:before, .slide:last-of-type h2:before { /* headings without counters */
 	content: none;
 }
 
-#progress {
+#progress, #time {
 	display: none;
 }
 
@@ -90,23 +90,22 @@ code.block {
 		transition: opacity 1s;
 	}
 
-	footer a:nth-of-type(2n+1) {
-		float: right;
-		margin-right: 2.5em;
-	}
-
 	footer a:nth-of-type(2n) {
 		float: left;
-		margin-left: 2.5em;
+		margin-left: 2.5rem;
 	}
 
-	.slide {
-		z-index: 1;
+	footer a:nth-of-type(2n+1) {
+		float: right;
+		margin-right: 2.5rem;
 	}
 
+	/* empty footer on chapters and first slide */
 	.slide.current:nth-of-type(1) ~ footer > *, .slide.chapter.current ~ footer > * {
 		opacity: 0;
 	}
+
+	/* stuff on first/last slides */
 
 	.slide:first-of-type img:nth-of-type(1) {
 		position: absolute;
@@ -137,9 +136,11 @@ code.block {
 		bottom: 45px;
 	}
 
+	/* stuff on common slides */
+
 	.slide > * {
-		margin-left: 2em;
-		margin-right: 2em;
+		margin-left: 2rem;
+		margin-right: 2rem;
 	}
 	
 	.slide > img { 
@@ -147,26 +148,33 @@ code.block {
 	}
 	
 	.slide ul, .slide ol {
-		padding-left: 1.1em;
+		padding-left: 1.1rem;
 	}
 
 	.slide h2 {
 		font-size: 200%;
-		margin: 0.7em 1em;
+		margin-top: 1.5rem;
+		margin-bottom: 1rem;
 		color: rgb(186, 13, 32);
 	}
 	
 	.slide:first-of-type h2, .slide.chapter h2 {
 		font-size: 300%;
-		margin: 0.5em 0.667em 0.3em;
 	}
 
 	.slide h3 {
 		color: black;
 		font-size: 125%;
-		margin: 1.2em 1.6em;
+		margin-top: 1rem;
+		margin-bottom: 1rem;
 	}
 	
+	.slide .section.after {
+		opacity: 0.1;
+	}
+
+	/* chapter slides */
+
 	.slide.chapter {
 		background-color: rgb(186, 13, 32);
 	}
@@ -185,9 +193,7 @@ code.block {
 		z-index: 1;
 	}
 
-	.slide .section.after {
-		opacity: 0.1;
-	}
+	/* overview modifications */
 
 	.overview .section.after {
 		opacity: 1;
@@ -221,6 +227,5 @@ code.block {
 
 	.overview .slide:nth-of-type(1):after, .overview .slide:nth-of-type(2):after, .overview .slide:last-of-type:after {
 		content: none;
-	}
-	
+	}	
 }

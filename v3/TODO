@@ -1,4 +1,3 @@
-- reskin, kbd, rem
 - debug: "slide x/y, remaining time ... \n comments \n next slide: xyz"
 - default skin
 - remote (master/slave)

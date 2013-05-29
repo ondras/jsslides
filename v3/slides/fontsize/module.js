@@ -6,7 +6,8 @@
 	}
 	
 	var change = function(delta) {
-		var index = conf.sizes.indexOf(document.documentElement.style.fontSize) || conf.sizes.indexOf(conf.normal);
+		var index = conf.sizes.indexOf(document.documentElement.style.fontSize);
+		if (index == -1) { index = conf.sizes.indexOf(conf.normal); }
 		if (index == -1) { return; }
 		index += delta;
 		index = Math.max(index, 0);
