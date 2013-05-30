@@ -12,7 +12,7 @@
 		}
 	}
 
-	var listener = function() {
+	var listener = function(e) {
 		if (e.ctrlKey) { return; }
 		toggle();
 	}
