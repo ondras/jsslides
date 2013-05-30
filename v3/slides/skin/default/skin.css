@@ -1,4 +1,4 @@
-@import url(http://fonts.googleapis.com/css?family=Lato:400,700|Inconsolata:400,700&subset=latin,latin-ext);
+@import url(http://fonts.googleapis.com/css?family=Lato:300,400,700,900|Inconsolata:400,700&subset=latin,latin-ext);
 
 body {
 	font-family: lato, sans-serif;
@@ -15,15 +15,17 @@ li {
 
 @media screen {
 	body {
-		background-color: #DE7310;
-		color: #212526;
+		background-color: #DBCEBB;
+		color: #100900;
+		font-weight: 300;
 	}
 
 	.slide h2 {
-		color: #DE7310;
+		font-weight: 900;
+		color: #B59354;
 		margin: 0;
 		padding: 1rem;
-		background-color: #422000;
+		background-color: #61301D;
 	}
 
 	.slide h2 ~ * {

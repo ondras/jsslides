@@ -3,7 +3,6 @@
 	<head>
 		<meta charset="utf-8" />
 		<title>JS Slides v3</title>
-		<script src="slides/slides3.js" type="text/javascript"></script>
 	</head>
 	<body>
 		
@@ -96,7 +95,12 @@
 	<p>Ondrej Zara, <a href="mailto:ondrej.zara@gmail.com">ondrej.zara@gmail.com</a></p>
 </section>
 
-<footer></footer>
+	<script src="slides/slides3.js" type="text/javascript"></script>
+	<script>
+		Slides.modules.time.parent = "body";
+		Slides.modules.progress.parent = "body";
+		Slides.modules.fontsize.normal = "200%";
+	</script>
 
 </body>
 </html>
