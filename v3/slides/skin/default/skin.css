@@ -4,13 +4,30 @@ body {
 	font-family: lato, sans-serif;
 }
 
-code {
+code, kbd {
 	font-weight: bold;
 	font-family: inconsolata, monospace;
 }
 
 li {
 	padding-top: 0.5rem;
+}
+
+kbd {
+	display: inline-block;
+	margin: 0 0.1em;
+	padding: 0.2em 0.6em;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+}
+
+code.block {
+	padding: 0.5rem;
+	margin: 0.5rem 0;
+	line-height: 150%;
+	border-top: 3px solid #61301D;
+	border-bottom: 3px solid #61301D;
+	border-radius: 15px;
 }
 
 @media screen {
@@ -20,7 +37,20 @@ li {
 		font-weight: 300;
 	}
 
-	.slide h2 {
+	a {
+		color: #61301D;
+		font-weight: normal;
+	}
+
+	kbd {
+		color: #333;
+		background-color: #f7f7f7;
+		-webkit-box-shadow: 0 1px 0px rgba(0, 0, 0, 0.2), 0 0 0 2px #ffffff inset;
+		-moz-box-shadow: 0 1px 0px rgba(0, 0, 0, 0.2), 0 0 0 2px #ffffff inset;
+		box-shadow: 0 1px 0px rgba(0, 0, 0, 0.2), 0 0 0 2px #ffffff inset;
+	}
+
+	h2 {
 		font-weight: 900;
 		color: #B59354;
 		margin: 0;
@@ -28,18 +58,32 @@ li {
 		background-color: #61301D;
 	}
 
-	.slide h2 ~ * {
+	h2 ~ * {
 		margin-left: 1rem;
+		margin-right: 1rem;
+	}
+
+	li.current {
+		font-weight: normal;
+		list-style-type: none;
+		position: relative;
+	}
+
+	li.current:before {
+		content: "☞";
+		font-family: serif;
+		position: absolute;
+		left: -1em;
+		font-size: 160%;
+		line-height: 62.5%;
 	}
 
 	#progress, #time {
 		position: fixed;
 		background-color: rgba(255, 255, 255, 0.5);
-		height: 15px;
+		height: 6px;
 		-webkit-transition: width 500ms;
 		-moz-transition: width 500ms;
-		-ms-transition: width 500ms;
-		-o-transition: width 500ms;
 		transition: width 500ms;
 	}
 
@@ -53,11 +97,11 @@ li {
 		display: block;
 		height: 100%;
 		background-color: rgba(240, 0, 0, 0.7);
-		width: 5px;
+		width: 20px;
 	}
 
 	#progress {
-		bottom: 15px;
+		bottom: 6px;
 		left: 0;
 		color: transparent;
 	}
@@ -70,6 +114,6 @@ li {
 		top: 0;
 		height: 100%;
 		background-color: rgba(30, 30, 240, 0.7);
-		width: 5px;
+		width: 20px;
 	}
 }

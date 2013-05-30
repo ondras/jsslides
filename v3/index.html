@@ -11,7 +11,7 @@
 <section class="slide">
 	<h2>JS Slides v3</h2>
 	<h3>Where semantic HTML meets interactive slide deck</h3>
-	<p>Created by <a style="font-family: inconsolata, monospace" href="http://twitter.com/0ndras">@0ndras</a>. Hit <kbd>Space</kbd> or <kbd>&rarr;</kbd> to continue&hellip;</p>
+	<p>Created by <a href="http://ondras.zarovi.cz/">Ondrej Zara</a>. Hit <kbd>Space</kbd> or <kbd>&rarr;</kbd> to continue&hellip;</p>
 </section>
 
 <section class="slide">
@@ -26,9 +26,9 @@
 <section class="slide">
 	<h2>Features</h2>
 	<ul class="sections">
-		<li>Themeable interface</li>
 		<li>Navigate slides and subsections by keyboard or touches</li>
 		<li>Adjust behavior as needed by extension modules</li>
+		<li>Themeable interface</li>
 	</ul>
 </section>
 
@@ -57,22 +57,34 @@
 		<li>Skin: define any visual property using standard CSS</li>
 		<li>Transition: pick from one of the available transition animations</li>
 		<li>Syntax: apply syntax highlighting<br/>
-			<code data-syntax="js">while (var i = 100) { i--; } // loop</code>
+			<code class="block" data-syntax="js">while (var i = 100) { i--; } // loop</code>
 		</li>
 	</ul>
 </section>
 
 <section class="slide">
-	<h2>Modules: miscellaneous #1</h2>
+	<h2>
+		<span lang="en">Modules: other #1</span>
+		<span lang="cs">Moduly: ostatní #1</span>
+	</h2>
 	<ul>
-		<li>Title: adjust window title to match current slide</li>
-		<li>URL: Leverage browser history and slide permalinks</li>
-		<li>Language: switch available languages using the <kbd>L</kbd> key</li>
+		<li>
+			<span lang="en">Title: adjust window title to match current slide</span>
+			<span lang="cs">Title: změna titulku okna podle aktuálního snímku</span>
+		</li>
+		<li>
+			<span lang="en">URL: Leverage browser history and slide permalinks</span>
+			<span lang="cs">URL: Využití historie prohlížeče pro navigaci a permalinky</span>
+		</li>
+		<li>
+			<span lang="en">Language: switch available languages using the <kbd>L</kbd> key</span>
+			<span lang="cs">Language: přepínání jazykových varianta klávesou <kbd>L</kbd></span>
+		</li>
 	</ul>
 </section>
 
 <section class="slide">
-	<h2>Modules: miscellaneous #2</h2>
+	<h2>Modules: other #2</h2>
 	<ul>
 		<li>Progress: display progress meter</li>
 		<li>Time: display remaining time</li>
@@ -84,9 +96,9 @@
 <section class="slide">
 	<h2>Interested?</h2>
 	<ul>
-		<li>View this page's source</li>
-		<li>Check out the docs</li>
-		<li>Check out the code</li>
+		<li>View <a href="FIXME">this page's source</a></li>
+		<li>Check out <a href="FIXME">the docs</a></li>
+		<li>Check out <a href="FIXME">the code</a></li>
 	</ul>
 </section>
 
@@ -100,6 +112,7 @@
 		Slides.modules.time.parent = "body";
 		Slides.modules.progress.parent = "body";
 		Slides.modules.fontsize.normal = "200%";
+		Slides.modules.language = ["en", "cs"];
 	</script>
 
 </body>
