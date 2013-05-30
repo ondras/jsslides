@@ -120,7 +120,7 @@ var Slides = {
 
 			case "keydown":
 			case "keypress":
-				if (!e.ctrlKey && !e.altKey && !("value" in e.target)) { e.preventDefault(); }
+				if (e.type == "keypress" && !e.ctrlKey && !e.altKey && !("value" in e.target)) { e.preventDefault(); }
 
 				for (var i=0;i<this._listeners.key.length;i++) {
 					var item = this._listeners.key[i];

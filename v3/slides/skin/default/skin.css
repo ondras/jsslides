@@ -71,7 +71,7 @@ code.block {
 
 	li.current:before {
 		content: "☞";
-		font-family: serif;
+		font-family: freeserif, serif;
 		position: absolute;
 		left: -1em;
 		font-size: 160%;
