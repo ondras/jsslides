@@ -90,30 +90,19 @@ code.block {
 	#time {
 		bottom: 0;
 		right: 0;
-	}
-
-	#time:before {
-		content: "";
-		display: block;
-		height: 100%;
-		background-color: rgba(240, 0, 0, 0.7);
-		width: 20px;
+		background-image: -webkit-linear-gradient(to right, rgba(240, 0, 0, 0.7) 0px, rgba(240, 0, 0, 0.7) 20px, rgba(240, 0, 0, 0) 100px);
+		background-image: linear-gradient(to right, rgba(240, 0, 0, 0.7) 0px, rgba(240, 0, 0, 0.7) 20px, rgba(240, 0, 0, 0) 100px);
 	}
 
 	#progress {
 		bottom: 6px;
 		left: 0;
 		color: transparent;
+		background-image: -webkit-linear-gradient(to left, rgba(0, 0, 240, 0.7) 0px, rgba(0, 0, 240, 0.7) 20px, rgba(0, 0, 240, 0) 100px);
+		background-image: linear-gradient(to left, rgba(0, 0, 240, 0.7) 0px, rgba(0, 0, 240, 0.7) 20px, rgba(0, 0, 240, 0) 100px);
 	}
 
-	#progress:after {
-		content: "";
-		display: block;
-		position: absolute;
-		right: 0;
-		top: 0;
-		height: 100%;
-		background-color: rgba(30, 30, 240, 0.7);
-		width: 20px;
+	#help {
+		font-weight: normal;
 	}
 }

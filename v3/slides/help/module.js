@@ -16,10 +16,7 @@
 		37: "←",
 		38: "↑",
 		39: "→",
-		40: "↓",
-		
-		
-		
+		40: "↓"
 	};
 	
 	var build = function() {
@@ -65,7 +62,7 @@
 		var hash = url.lastIndexOf("#");
 		if (hash > -1) { url = url.substring(0, hash); }
 		
-		var str = "<h2>" + url + "</h2><table>" + build();
+		var str = "<h3>" + url + "</h3><table>" + build();
 		str += "</table><p>This is <a href='http://ondras.zarovi.cz/slides/'>Slides v3</a>, © 2013&ndash;" + (new Date().getFullYear()) + " <a href='http://ondras.zarovi.cz/'>Ondřej Žára</a></p>";
 
 		node.innerHTML = str;

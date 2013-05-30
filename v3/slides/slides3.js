@@ -10,18 +10,18 @@ var Slides = {
 		change: []
 	},
 
-	next: function() {
+	next: function(skipSections) {
 		var result = this.current.next();
-		if (!result) {
+		if (!result || skipSections) {
 			var index = this.slides.indexOf(this.current) + 1;
 			if (index == this.slides.length) { return; }
 			this.show(this.slides[index]);
 		}
 	},
 
-	prev: function() {
+	prev: function(skipSections) {
 		var result = this.current.prev();
-		if (!result) { 
+		if (!result || skipSections) { 
 			var index = this.slides.indexOf(this.current) - 1;
 			if (index == -1) { return; }
 			this.show(this.slides[index], true); 
@@ -120,10 +120,8 @@ var Slides = {
 
 			case "keydown":
 			case "keypress":
-				if (e.keyCode == 9) { 
-					e.preventDefault();
-					return;
-				}
+				if (!e.ctrlKey && !e.altKey && !("value" in e.target)) { e.preventDefault(); }
+
 				for (var i=0;i<this._listeners.key.length;i++) {
 					var item = this._listeners.key[i];
 					var code = e.keyCode;

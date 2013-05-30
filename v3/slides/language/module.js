@@ -12,9 +12,8 @@
 		}
 	}
 
-	var listener = function(e) {
+	var listener = function() {
 		if (e.ctrlKey) { return; }
-		e.preventDefault();
 		toggle();
 	}
 	Slides.addKeyListener(listener, ["L".charCodeAt(0)], "Cycle language");

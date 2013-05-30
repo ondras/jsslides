@@ -67,7 +67,8 @@
 		}
 	}
 
-	var toggle = function() {
+	var toggle = function(e) {
+		if (e.ctrlKey) { return; }
 		active ? close() : open();
 	}
 	
