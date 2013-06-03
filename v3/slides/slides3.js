@@ -236,7 +236,7 @@ Slides.modules.transition = "horizontal"; /* none vertical horizontal blend corn
 Slides.modules.overview = true;
 Slides.modules.help = true;
 Slides.modules.fontsize = {
-	sizes: ["90%", "100%" ,"120%", "150%", "200%", "250%", "350%"],
+	sizes: ["100%" ,"120%", "150%", "200%", "250%", "350%"],
 	normal: "150%"
 };
 Slides.modules.syntax = true;

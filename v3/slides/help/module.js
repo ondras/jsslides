@@ -19,6 +19,12 @@
 		40: "↓"
 	};
 	
+	var position = function() {
+		if (!active) { return; }
+		node.style.left = Math.round((document.body.offsetWidth-node.offsetWidth)/2) + "px";
+		node.style.top = Math.round((document.body.offsetHeight-node.offsetHeight)/2) + "px";
+	}
+	
 	var build = function() {
 		var str = "";
 		var listeners = Slides.getKeyListeners();
@@ -63,10 +69,13 @@
 		if (hash > -1) { url = url.substring(0, hash); }
 		
 		var str = "<h3>" + url + "</h3><table>" + build();
-		str += "</table><p>This is <a href='http://ondras.zarovi.cz/slides/'>Slides v3</a>, © 2013&ndash;" + (new Date().getFullYear()) + " <a href='http://ondras.zarovi.cz/'>Ondřej Žára</a></p>";
+		var year = new Date().getFullYear();
+		var years = (year == 2013 ? "" : "2013&ndash;") + year;
+		str += "</table><p>This is <a href='http://ondras.zarovi.cz/slides/'>Slides v3</a>, © "+years+" <a href='http://ondras.zarovi.cz/'>Ondřej Žára</a></p>";
 
 		node.innerHTML = str;
 		node.classList.toggle("hidden");
+		position();
 	}
 	
 	var close = function() {
@@ -79,7 +88,8 @@
 		active ? close() : open();
 	}
 	
+	Slides.addStylesheet("help/module.css");
 	Slides.addKeyListener(toggle, "?", "Toggle help");
 	Slides.addKeyListener(close, 27);
-	Slides.addStylesheet("help/module.css");
+	window.addEventListener("resize", position);
 })();
