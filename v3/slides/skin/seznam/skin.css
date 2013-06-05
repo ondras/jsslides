@@ -50,6 +50,7 @@ code.block {
 
 .slide:nth-of-type(1) h2:before, .slide:nth-of-type(2) h2:before, .slide:last-of-type h2:before { /* headings without counters */
 	content: none;
+	margin: 0;
 }
 
 #progress, #time {
