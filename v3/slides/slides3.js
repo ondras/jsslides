@@ -162,14 +162,7 @@ Slide.prototype.show = function(expandAll) {
 	this._node.classList.add("current");
 
 	this._index = (expandAll ? this._sections.length-1 : 0);
-	for (var i=0;i<this._sections.length;i++) {
-		var section = this._sections[i];
-		if (i == this._index) {
-			section.classList.add("current");
-		} else {
-			section.classList.remove("current");
-		}
-	}
+	this._syncSections();
 }
 
 Slide.prototype.next = function() {
