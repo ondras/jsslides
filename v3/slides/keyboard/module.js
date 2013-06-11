@@ -1,10 +1,12 @@
 Slides.addKeyListener(function(e) { 
 	if (e.ctrlKey) { return; }
+	e.preventDefault();
 	Slides.prev(false);
 }, [8, 37, 38], "Previous slide/section");
 
 Slides.addKeyListener(function(e) {
 	if (e.ctrlKey) { return; }
+	e.preventDefault();
 	Slides.next(false);
 }, [32, 39, 40], "Next slide/section");
 
