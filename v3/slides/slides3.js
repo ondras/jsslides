@@ -11,31 +11,46 @@ var Slides = {
 	},
 
 	next: function(skipSections) {
-		var result = this.current.next();
-		if (!result || skipSections) {
-			var index = this.slides.indexOf(this.current) + 1;
-			if (index == this.slides.length) { return; }
-			this.show(this.slides[index]);
+		var index = this.slides.indexOf(this.current);
+		var section = 0;
+
+		if (skipSections) {
+			index++;
+		} else {
+			section = this.current.index+1;
+			if (section == this.current.sections.length) {
+				index++;
+				section = 0;
+			}
 		}
+
+		if (index < this.slides.length) { this.show(this.slides[index], section); }
 	},
 
 	prev: function(skipSections) {
-		var result = this.current.prev();
-		if (!result || skipSections) { 
-			var index = this.slides.indexOf(this.current) - 1;
-			if (index == -1) { return; }
-			this.show(this.slides[index], true); 
+		var index = this.slides.indexOf(this.current);
+		var section = 0;
+
+		if (skipSections) {
+			index--;
+		} else {
+			section = this.current.index-1;
+			if (section < 0) {
+				index--;
+				if (index > -1) { section = this.slides[index].sections.length-1; }
+			}
 		}
 
+		if (index > -1) { this.show(this.slides[index], section); }
 	},
 
-	show: function(slide, expandAll) {
+	show: function(slide, section) {
 		this.current = slide;
 
 		for (var i=0;i<this.slides.length;i++) {
 			var slide = this.slides[i];
 			if (this.current == slide) {
-				slide.show(expandAll);
+				slide.show(section);
 			} else {
 				slide.hide();
 			}
@@ -139,11 +154,11 @@ document.addEventListener("keypress", Slides);
 var Slide = function(node) {
 	this._node = node;
 
-	this._sections = [];
-	this._index = -1;
-	
+	this.sections = [];
 	this._findSections(node);
-	this.next(); /* show first section */
+	this.index = (this.sections.length ? 0 : -1); /* last open section */
+
+	this._syncSections(); /* show first section */
 }
 
 Slide.prototype.getNode = function() {
@@ -156,32 +171,23 @@ Slide.prototype.getTitle = function() {
 
 Slide.prototype.hide = function() {
 	this._node.classList.remove("current");
+	return this;
 }
 
-Slide.prototype.show = function(expandAll) {
+Slide.prototype.show = function(section) {
 	this._node.classList.add("current");
 
-	this._index = (expandAll ? this._sections.length-1 : 0);
+	this.index = (section || 0);
+	this.index = Math.max(this.index, 0);
+	this.index = Math.min(this.index, this.sections.length-1);
 	this._syncSections();
-}
 
-Slide.prototype.next = function() {
-	if (this._index+1 >= this._sections.length) { return false; }
-	this._index++;
-	this._syncSections();
-	return true;
-}
-
-Slide.prototype.prev = function() {
-	if (this._index <= 0) { return false; }
-	this._index--;
-	this._syncSections();
-	return true;
+	return this;
 }
 
 Slide.prototype._findSections = function(node) {
 	if (node.classList.contains("section")) { 
-		this._sections.push(node);
+		this.sections.push(node);
 	}
 
 	var hasSections = node.classList.contains("sections");
@@ -195,14 +201,14 @@ Slide.prototype._findSections = function(node) {
 }
 
 Slide.prototype._syncSections = function() {
-	for (var i=0;i<this._sections.length;i++) {
-		var section = this._sections[i];
-		if (i == this._index) {
+	for (var i=0;i<this.sections.length;i++) {
+		var section = this.sections[i];
+		if (i == this.index) {
 			section.classList.add("current");
 			section.classList.remove("after");
 		} else {
 			section.classList.remove("current");
-			if (i < this._index) {
+			if (i < this.index) {
 				section.classList.remove("after");
 			} else {
 				section.classList.add("after");
