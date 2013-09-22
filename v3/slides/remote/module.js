@@ -1,4 +1,7 @@
 (function() {
+	var r = location.search.match(/[\?&]remote/);
+	if (!r) { return; }
+
 	var parent = document.createElement("div");
 	parent.id = "remote";
 	
