@@ -3,10 +3,11 @@ body > *:not(#remote) {
 }
 
 #remote button {
-	margin: auto;
+	margin: 3vh auto;
 	display: block;
-	width: 95vw;
+	width: 94vw;
 	font-size: 10vh;
+	cursor: pointer;
 }
 
 #remote button span {
@@ -15,7 +16,7 @@ body > *:not(#remote) {
 }
 
 #remote button:first-of-type {
-	height: 50vh;
+	height: 60vh;
 }
 
 #remote button:last-of-type {
