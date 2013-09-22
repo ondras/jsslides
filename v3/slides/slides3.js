@@ -62,7 +62,7 @@ var Slides = {
 
 	addScript: function(path) {
 		var script = document.createElement("script");
-		script.src = this._path + "/" + path; 
+		script.src = (path.indexOf("http") == 0 ? path : this._path + "/" + path);
 		document.body.appendChild(script);
 		return script;
 	},
