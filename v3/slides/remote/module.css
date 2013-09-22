@@ -6,7 +6,7 @@ body > *:not(#remote) {
 	margin: 3vh auto;
 	display: block;
 	width: 94vw;
-	font-size: 10vh;
+	font-size: 20vh;
 	cursor: pointer;
 }
 
