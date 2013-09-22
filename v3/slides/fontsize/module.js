@@ -31,7 +31,7 @@
 	Slides.addKeyListener(minus, "S".charCodeAt(0), "Change font size");
 	Slides.addKeyListener(normal, "N".charCodeAt(0), "Change font size");
 	
-	var r = location.search.match(/size=([0-9]+)/);
+	var r = location.search.match(/[\?&]size=([0-9]+)/);
 	if (r) { 
 		var size = r[1] + "%"; 
 		if (conf.sizes.indexOf(size) != -1) { conf.normal = size; }

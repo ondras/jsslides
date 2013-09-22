@@ -70,7 +70,6 @@
 		if (win && win.closed) { win = null; }
 		if (!win) { return; }
 		var body = win.document.body;
-		window.www = win;
 		var html = "";
 		html += "<link rel='stylesheet' href='" + style + "' />";
 		html += "<ul>";
