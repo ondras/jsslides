@@ -245,3 +245,4 @@ Slides.modules.touch = {
 	swipe: true,
 	pinch: true
 };
+Slides.modules.remote = true;
