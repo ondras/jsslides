@@ -32,14 +32,14 @@ code.block {
 
 @media screen {
 	body {
-		background-color: #DBCEBB;
-		color: #100900;
-		font-weight: 300;
+		background-color: #E9CF92;
+		color: #4F2512;
+		xfont-weight: 300;
 	}
 
 	a {
 		color: #61301D;
-		font-weight: normal;
+		font-weight: bold;
 	}
 
 	kbd {
@@ -52,10 +52,22 @@ code.block {
 
 	h2 {
 		font-weight: 900;
-		color: #B59354;
+		color: #E9CF92;
 		margin: 0;
 		padding: 1rem;
-		background-color: #61301D;
+		background-color: #4F2512;
+		position: relative;
+	}
+
+	h2:after {
+		display: block;
+		content: "";
+		position: absolute;
+		left: 0;
+		bottom: 0;
+		width: 100%;
+		border-top: 0.3rem solid #904420;
+		border-bottom: 0.3rem solid #CA902C;
 	}
 
 	h2 ~ * {
@@ -64,13 +76,14 @@ code.block {
 	}
 
 	li.current {
-		font-weight: normal;
+		font-weight: bold;
 		list-style-type: none;
 		position: relative;
 	}
 
 	li.current:before {
 		content: "☞";
+		font-weight: normal;
 		font-family: freeserif, serif;
 		position: absolute;
 		left: -1em;
@@ -100,9 +113,5 @@ code.block {
 		color: transparent;
 		background-image: -webkit-linear-gradient(to left, rgba(0, 0, 240, 0.7) 0px, rgba(0, 0, 240, 0.7) 20px, rgba(0, 0, 240, 0) 100px);
 		background-image: linear-gradient(to left, rgba(0, 0, 240, 0.7) 0px, rgba(0, 0, 240, 0.7) 20px, rgba(0, 0, 240, 0) 100px);
-	}
-
-	#help {
-		font-weight: normal;
 	}
 }
