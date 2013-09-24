@@ -32,6 +32,7 @@ code.block {
 	border-radius: 16px;
 	padding: 0.5em;
 	line-height: 150%;
+	margin-bottom: 0.5em;
 }
 
 .slide.chapter {
@@ -93,12 +94,12 @@ code.block {
 
 	footer a:nth-of-type(2n) {
 		float: left;
-		margin-left: 2.5rem;
+		margin-left: 2rem;
 	}
 
 	footer a:nth-of-type(2n+1) {
 		float: right;
-		margin-right: 2.5rem;
+		margin-right: 2rem;
 	}
 
 	/* empty footer on chapters and first slide */
