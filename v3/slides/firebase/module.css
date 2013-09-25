@@ -1,0 +1,16 @@
+#firebase {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	width: 1px;
+	height: 1px;
+	border-radius: 50%;
+}
+
+#firebase.online {
+	box-shadow: 0 0 5px 5px #0f0;
+}
+
+#firebase.offline {
+	box-shadow: 0 0 5px 5px #f00;
+}

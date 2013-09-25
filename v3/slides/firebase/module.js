@@ -1,10 +1,19 @@
 (function() {
 	var remote = null;
 	var auth = null;
+	var status = document.createElement("div");
+	status.id = "firebase";
+	document.body.appendChild(status);
 
 	var state = {
 		slide: -1,
 		section: -1
+	}
+	
+	var setStatus = function(s) {
+		status.classList.remove("online");
+		status.classList.remove("offline");
+		status.classList.add(s ? "online" : "offline");
 	}
 	
 	var changeLocal = function() {
@@ -32,6 +41,10 @@
 	Slides.addScript("https://cdn.firebase.com/v0/firebase.js").onload = function() {
 		remote = new Firebase(Slides.modules.firebase.url);
 		remote.on("value", changeRemote);
+	
+		remote.root().child(".info/connected").on("value", function(snap) {
+			setStatus(snap.val());
+		});
 	}
 	
 	if (Slides.modules.firebase.write) {
@@ -44,4 +57,7 @@
 			auth.login(Slides.modules.firebase.auth, {rememberMe:true});
 		}
 	}
+	
+	Slides.addStylesheet("firebase/module.css");
+	setStatus(false);
 })();
