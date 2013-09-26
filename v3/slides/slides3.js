@@ -226,7 +226,7 @@ Slides.modules.progress = {
 	parent: "footer"
 };
 Slides.modules.time = {
-	length: 10*60*1000,
+	remaining: 10*60*1000,
 	parent: "footer"
 };
 Slides.modules.skin = "default";
@@ -245,4 +245,14 @@ Slides.modules.touch = {
 	swipe: true,
 	pinch: true
 };
+Slides.modules.auto = {
+	limit: 0
+}
 Slides.modules.remote = true;
+/*
+	Slides.modules.firebase = {
+		url: "https://ondras.firebaseio.com/slides",
+		write: true,
+		auth: "github"
+	}
+*/

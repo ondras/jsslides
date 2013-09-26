@@ -84,9 +84,7 @@
 
 	var syncTime = function() {
 		if (!time) { return; }
-		var elapsed = Date.now()-start;
-		var remaining = Slides.modules.time.length - elapsed;
-		remaining = Math.max(0, remaining);
+		var remaining = Slides.modules.time.remaining;
 
 		remaining = Math.round(remaining/1000);
 		var s = remaining % 60;

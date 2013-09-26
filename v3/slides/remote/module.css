@@ -1,4 +1,4 @@
-body > *:not(#remote) {
+body > *:not(#remote):not(#firebase) {
 	display: none;
 }
 
