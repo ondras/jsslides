@@ -1,7 +1,7 @@
 #firebase {
 	position: absolute;
-	right: 0;
-	bottom: 0;
+	right: -1px;
+	bottom: -1px;
 	width: 1px;
 	height: 1px;
 	border-radius: 50%;

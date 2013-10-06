@@ -3,22 +3,38 @@ body > *:not(#remote):not(#firebase) {
 }
 
 #remote button {
-	margin: 3vh auto;
-	display: block;
-	width: 94vw;
+	display: inline-block;
 	font-size: 20vh;
 	cursor: pointer;
+	margin: 3vh 3vw;
 }
 
-#remote button span {
-	display: block;
-	font-size: 50%;
+@media screen and (orientation: portrait) {
+	#remote button {
+		width: 94vw;
+	}
+
+	#remote button:first-of-type {
+		height: 60vh;
+		margin-bottom: 0;
+	}
+
+	#remote button:last-of-type {
+		height: 30vh;
+	}
 }
 
-#remote button:first-of-type {
-	height: 60vh;
-}
+@media screen and (orientation: landscape) {
+	#remote button {
+		height: 94vh;
+	}
 
-#remote button:last-of-type {
-	height: 30vh;
+	#remote button:first-of-type {
+		width: 60vw;
+		margin-right: 0;
+	}
+
+	#remote button:last-of-type {
+		width: 30vw;
+	}
 }

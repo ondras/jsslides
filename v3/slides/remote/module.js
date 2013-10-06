@@ -11,8 +11,12 @@
 	prev.innerHTML = "Back";
 	
 	var event = ("ontouchstart" in prev ? "touchstart" : "click");
-	next.addEventListener(event, Slides.next.bind(Slides, false));
-	prev.addEventListener(event, Slides.prev.bind(Slides, false));
+	var handler = function(e) {
+		e.stopPropagation();
+		Slides[e.target == prev ? "prev" : "next"]();
+	}
+	next.addEventListener(event, handler);
+	prev.addEventListener(event, handler);
 	
 	document.body.appendChild(parent);
 	parent.appendChild(next);
