@@ -62,7 +62,8 @@ var Slides = {
 
 	addScript: function(path) {
 		var script = document.createElement("script");
-		script.src = (path.indexOf("http") == 0 ? path : this._path + "/" + path);
+		if (path.charAt(0) != "." && path.indexOf("http") != 0) { path = this._path + "/" + path; }
+		script.src = path;
 		document.body.appendChild(script);
 		return script;
 	},
@@ -70,7 +71,8 @@ var Slides = {
 	addStylesheet: function(path) {
 		var link = document.createElement("link");
 		link.rel = "stylesheet";
-		link.href = this._path + "/" + path;
+		if (path.charAt(0) != ".") { path = this._path + "/" + path; }
+		link.href = path;
 		document.body.appendChild(link);
 		return link;
 	},
