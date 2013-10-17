@@ -10,4 +10,8 @@
 	.slide:not(.current) {
 		opacity: 0;
 	}
+
+	.overview .slide {
+		opacity: 1;
+	}
 }

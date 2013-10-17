@@ -168,7 +168,8 @@ Slide.prototype.getNode = function() {
 }
 
 Slide.prototype.getTitle = function() {
-	return this._node.querySelector("h2, h3, strong, em").innerHTML;
+	var node = this._node.querySelector("h2, h3, strong, em");
+	return (node ? node.innerHTML : "");
 }
 
 Slide.prototype.hide = function() {
