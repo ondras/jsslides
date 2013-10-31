@@ -1,19 +1,14 @@
 var Syntax = {
-	base: "", /* base path */
+	base: [].slice.call(document.querySelectorAll("script")).pop().src.split("/").slice(0, -1).join("/"), /* base path */
 	tab: "    ",
+	selector: "[data-syntax]",
 	
 	_registry: {},
 	_todo: {},
 
 	/* apply to all elements */
 	all: function() { 
-		var all = document.getElementsByTagName("*");
-		var todo = [];
-		for (var i=0;i<all.length;i++) {
-			var node = all[i];
-			if (node.getAttribute("data-syntax")) { todo.push(node); }
-		}
-		
+		var todo = [].slice.call(document.querySelectorAll(this.selector));
 		while (todo.length) { this.apply(todo.shift()); }
 	},
 	
@@ -21,7 +16,7 @@ var Syntax = {
 	apply: function(node) {
 		var syntax = node.getAttribute("data-syntax");
 		if (syntax in this._registry) { /* apply */
-			this._process(node, syntax);
+			this._processSyntaxNode(node, syntax);
 		} else { /* defer */
 			if (!(this._todo[syntax])) { /* append syntax script */
 				this._todo[syntax] = [];
@@ -36,25 +31,46 @@ var Syntax = {
 		this._registry[name] = patterns;
 	},
 	
-	init: function() {
-		var scripts = document.getElementsByTagName("script");
-		for (var i=0;i<scripts.length;i++) {
-			var s = scripts[i];
-			var r = s.src.match(/^(.*)syntax\.js$/);
-			if (r) { this.base = r[1]; }
+	/* apply a set of patterns to a root node */
+	_processSyntaxNode: function(node, syntax) {
+		node.className += " syntax-"+syntax;
+		this._processNode(node, syntax);
+
+		var lines = node.innerHTML.match(/\n/g).length+1;
+		if (node.nodeName.toLowerCase() == "pre" && node.innerHTML.charAt(0) == "\n") { lines--; } /* first newline in <pre> is stripped by spec */
+		if (node.innerHTML.charAt(node.innerHTML.length-1) == "\n") { lines--; } /* last newline is ignored */
+
+		if (lines > 1) { this._insertLineCounter(node, lines); }
+	},
+
+	/* apply a set of patterns to a generic node */
+	_processNode: function(node, syntax) {
+		var children = [].slice.call(node.childNodes);
+		for (var i=0;i<children.length;i++) {
+			var child = children[i];
+			switch (child.nodeType) {
+				case 1: /* element node */
+					this._processNode(child, syntax);
+				break;
+
+				case 3: /* text node */
+					var tmp = document.createElement("div");
+					tmp.innerHTML = this._processString(child.nodeValue, syntax);
+
+					var fragment = document.createDocumentFragment();
+					while (tmp.firstChild) { fragment.appendChild(tmp.firstChild); }
+
+					child.parentNode.replaceChild(fragment, child);
+				break;
+			}
 		}
 	},
-	
-	/* apply a set of patterns to a node */
-	_process: function(node, syntax) {
-		var patterns = this._registry[syntax];
-		node.className += " syntax-"+syntax;
 
-		var code = "";
-		/* IE normalizes innerHTML; need to get text content via nodeValues */
-		for (var i=0;i<node.childNodes.length;i++) { code += node.childNodes[i].nodeValue || ""; }
-		
-		code = code.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+	/* apply a set of patterns to a text node contents */
+	_processString: function(str, syntax) {
+		var patterns = this._registry[syntax];
+
+		str = str.replace(/</g, "&lt;").replace(/>/g, "&gt;");
 
 		for (var i=0;i<patterns.length;i++) {
 			var pattern = patterns[i];
@@ -65,55 +81,47 @@ var Syntax = {
 			}
 			replacement += "<span class='"+pattern.token+"'>$"+index+"</span>";
 			
-			code = code.replace(pattern.re, replacement);
+			str = str.replace(pattern.re, replacement);
 		}
 		
-		code = code.replace(/\t/g, this.tab);
+		str = str.replace(/\t/g, this.tab);
+		return str;
+	},
 
-		if (node.outerHTML) { /* IE hack; innerHTML normalizes whitespace */
-			node.innerHTML = "";
-			
-			var tmp = document.createElement("div");
-			tmp.style.display = "none";
-			document.body.insertBefore(tmp, document.body.firstChild);
-			
-			var pre = document.createElement("pre");
-			tmp.appendChild(pre);
-			pre.outerHTML = "<pre>" + code + "</pre>";
-			
-			while (tmp.firstChild.firstChild) { node.appendChild(tmp.firstChild.firstChild); }
-			tmp.parentNode.removeChild(tmp);
-		} else {
-			node.innerHTML = code;
+	_insertLineCounter: function(node, count) {
+		var parent = document.createElement("div");
+		parent.className = "line-counter";
+
+		for (var i=0;i<count;i++) {
+			var num = document.createElement("div");
+			num.innerHTML = i+1;
+			parent.appendChild(num);
 		}
+
+		node.insertBefore(parent, node.firstChild);
 	},
 	
 	_append: function(syntax) {
 		var s = document.createElement("script");
-		s.src = this.base + "syntax-"+syntax+".js";
-		
-		var thisp = this;
-		var loaded = function() { thisp._loaded(); }
+		s.src = this.base + "/syntax-"+syntax+".js";
 		
 		if (s.addEventListener) {
-			s.addEventListener("load", loaded, false);
+			s.addEventListener("load", this._loaded.bind(this));
 		} else {
-			s.attachEvent("onreadystatechange", loaded);
+			s.attachEvent("onreadystatechange", this._loaded.bind(this));
 		}
 
-		document.body.insertBefore(s, document.body.firstChild);
+		var parent = document.querySelector("head, body");
+		parent.insertBefore(s, parent.firstChild);
 	},
 	
 	_loaded: function() {
 		for (var syntax in this._registry) {
 			if (!(syntax in this._todo)) { continue; }
 			while (this._todo[syntax].length) {
-				this._process(this._todo[syntax].shift(), syntax);
+				this._processSyntaxNode(this._todo[syntax].shift(), syntax);
 			}
 			delete this._todo[syntax];
 		}
 	}
 };
-
-Syntax.init();
-
