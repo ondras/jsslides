@@ -20,6 +20,6 @@
 	text-align: right;
 }
 
-.line-counter div:after {
+.line-counter div::after {
 	content: ". ";
 }
