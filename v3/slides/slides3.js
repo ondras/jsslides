@@ -252,6 +252,7 @@ Slides.modules.auto = {
 	limit: 0
 }
 Slides.modules.remote = true;
+Slides.modules.mouse = ""; /* "x", "y", "button" */
 /*
 	Slides.modules.firebase = {
 		url: "https://ondras.firebaseio.com/slides",
