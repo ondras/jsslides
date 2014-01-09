@@ -36,7 +36,7 @@ var Syntax = {
 		node.className += " syntax-"+syntax;
 		this._processNode(node, syntax);
 
-		var lines = node.innerHTML.match(/\n/g).length+1;
+		var lines = (node.innerHTML.match(/\n/g) || []).length+1;
 		if (node.nodeName.toLowerCase() == "pre" && node.innerHTML.charAt(0) == "\n") { lines--; } /* first newline in <pre> is stripped by spec */
 		if (node.innerHTML.charAt(node.innerHTML.length-1) == "\n") { lines--; } /* last newline is ignored */
 

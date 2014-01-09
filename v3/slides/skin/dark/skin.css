@@ -1,0 +1,111 @@
+@import url(http://fonts.googleapis.com/css?family=Ubuntu:400,700|Ubuntu+Mono:400,700&subset=latin,latin-ext);
+
+#time {
+	display: none;
+}
+
+body {
+	font-family: ubuntu, sans-serif;
+	background-image: url(bg-cyan.jpg);
+	background-size: 100% 100%;
+}
+
+code {
+	font-weight: bold;
+	font-family: ubuntu mono, monospace;
+}
+
+li {
+	line-height: 175%;
+}
+
+code.block {
+	padding: 0.5em;
+	line-height: 150%;
+	margin-bottom: 0.5em;
+	background-color: rgba(80, 80, 80, 0.25);
+}
+
+p img {
+	display: block;
+	height: 70vh;
+	margin: auto;
+}
+
+.slide.chapter h2 {
+	text-align: center;
+}	
+
+@media screen {
+	body {
+		background-color: #000;
+		color: #ddd;
+	}
+	
+	h2 {
+		color: hsl(180, 50%, 50%);
+	}
+	
+	a, code {
+		color: #eee;
+	}
+	
+	code.block {
+		border-left: 0.2rem solid hsl(180, 50%, 50%);
+	}
+
+	.slide > * {
+		margin-left: 2rem;
+		margin-right: 2rem;
+	}
+	
+	.slide > img { 
+		margin: 0;
+	}
+	
+	.slide ul, .slide ol {
+		padding-left: 1.1rem;
+	}
+
+	.slide h2 {
+		font-size: 200%;
+		margin-top: 1.5rem;
+		margin-bottom: 1rem;
+	}
+	
+	.slide:first-of-type code {
+		color: #eee;
+		position: absolute;
+		left: 0;
+		bottom: 1em;
+	}
+	
+	.slide:last-of-type p:before {
+		content: "?";
+		display: block;
+		text-align: center;
+		font-size: 500%;
+		line-height: 1.5;
+		font-weight: bold;
+		text-shadow: 0 0 0.1em hsl(180, 50%, 50%);
+	}
+
+	footer {
+		transition: opacity 500ms;
+	}
+	
+	.slide.current:first-of-type ~ footer {
+		opacity: 0;
+	}
+
+	#progress {
+		width: 100%;
+		height: 0;
+		color: transparent;
+		border-top: 8px dotted hsl(180, 50%, 50%);
+		position: fixed;
+		left: 0;
+		bottom: -4px;
+		transition: width 500ms;
+	}
+}
