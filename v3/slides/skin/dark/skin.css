@@ -23,7 +23,6 @@ code.block {
 	padding: 0.5em;
 	line-height: 150%;
 	margin-bottom: 0.5em;
-	background-color: rgba(80, 80, 80, 0.25);
 }
 
 p img {
@@ -52,6 +51,7 @@ p img {
 	
 	code.block {
 		border-left: 0.2rem solid hsl(180, 50%, 50%);
+		background-color: rgba(80, 80, 80, 0.25);
 	}
 
 	.slide > * {
@@ -107,5 +107,17 @@ p img {
 		left: 0;
 		bottom: -4px;
 		transition: width 500ms;
+	}
+
+	.keyword {
+		color: #55c !important;
+	}
+
+	.string, .string * {
+		color: #888 !important;
+	}
+
+	.comment, .comment * {
+		color: #4a4 !important;
 	}
 }
