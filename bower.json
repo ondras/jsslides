@@ -1,0 +1,22 @@
+{
+  "name": "jsslides",
+  "version": "3.0.0",
+  "authors": [
+    "Ondrej Zara <ondrej.zara@gmail.com> (http://ondras.zarovi.cz/)"
+  ],
+  "description": "An interactive HMTL5-based slide deck",
+  "main": "v3/slides/slides3.js",
+  "keywords": [
+    "slide",
+    "deck",
+    "html5",
+    "slides"
+  ],
+  "license": "MIT",
+  "homepage": "http://ondras.github.com/jsslides/v3/",
+  "ignore": [
+    "*",
+    "!bower.json",
+    "!v3/slides/*"
+  ]
+}
