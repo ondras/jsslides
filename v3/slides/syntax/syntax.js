@@ -1,5 +1,5 @@
 var Syntax = {
-	base: [].slice.call(document.querySelectorAll("script")).pop().src.split("/").slice(0, -1).join("/"), /* base path */
+	base: (document.currentScript || [].slice.call(document.querySelectorAll("script")).pop()).src.split("/").slice(0, -1).join("/"), /* base path */
 	tab: "    ",
 	selector: "[data-syntax]",
 	
