@@ -14,7 +14,7 @@
 	var previouslyActive = [];
 
 	var listener = function() {
-		var active = document.querySelectorAll(".current[" + name + "]");
+		var active = document.querySelectorAll(".slide.current[" + name + "], .slide.current .current[" + name + "]");
 		var start = [];
 		var stop = previouslyActive.slice();
 
