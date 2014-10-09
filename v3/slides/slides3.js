@@ -252,6 +252,7 @@ Slides.modules.auto = {
 	limit: 0
 }
 Slides.modules.remote = true;
+Slides.modules.sound = true;
 Slides.modules.mouse = ""; /* "x", "y", "button" */
 /*
 	Slides.modules.firebase = {
