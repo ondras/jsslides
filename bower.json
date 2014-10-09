@@ -17,6 +17,6 @@
   "ignore": [
     "*",
     "!bower.json",
-    "!v3/slides/*"
+    "!v3/slides/**"
   ]
 }
