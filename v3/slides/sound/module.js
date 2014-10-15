@@ -14,7 +14,7 @@
 	var previouslyActive = [];
 
 	var listener = function() {
-		var active = document.querySelectorAll(".slide.current[" + name + "], .slide.current .current[" + name + "]");
+		var active = [].slice.call(document.querySelectorAll(".slide.current[" + name + "], .slide.current .current[" + name + "]"));
 		var start = [];
 		var stop = previouslyActive.slice();
 
@@ -35,6 +35,8 @@
 		start.forEach(function(node) {
 			cache[node.getAttribute(name)].play();
 		});
+
+		previouslyActive = active;
 	}
 	Slides.addChangeListener(listener);
 	listener();
