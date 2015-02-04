@@ -96,7 +96,7 @@ var Slides = {
 	format: function(template) {
 		var replacements = {
 			"s": this.current.getTitle(),
-			"t": document.body.querySelector("h1, title").innerHTML,
+			"t": document.querySelector("h1, title").innerHTML,
 			"n": this.slides.indexOf(Slides.current) + 1,
 			"c": this.slides.length
 		};
