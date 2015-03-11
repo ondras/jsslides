@@ -4,6 +4,7 @@ var Slides = {
 	slides: [],
 	current: null,
 
+	_title: document.querySelector("h1, title").innerHTML,
 	_path: [].slice.call(document.querySelectorAll("script")).pop().src.split("/").slice(0, -1).join("/"),
 	_listeners: {
 		key: [],
@@ -96,7 +97,7 @@ var Slides = {
 	format: function(template) {
 		var replacements = {
 			"s": this.current.getTitle(),
-			"t": document.querySelector("h1, title").innerHTML,
+			"t": this._title,
 			"n": this.slides.indexOf(Slides.current) + 1,
 			"c": this.slides.length
 		};
