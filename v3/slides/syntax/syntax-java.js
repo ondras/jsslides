@@ -15,7 +15,7 @@
 	
 	patterns.push({
 		token: "number",
-		re: /(^|\s|[-+*\/()])((-|0x|0b)?[0-9]+L?(\.[0-9]+)?(fd)?)/ig,
+		re: /(^|\s|[-+*\/()])((-|0x|0b)?[0-9]+L?(\.[0-9]+)?[fd]?)/ig,
 		index: 2
 	});
 
@@ -39,7 +39,7 @@
 		"short", "static", "strictfp", "super", "switch", "synchronized", "this",
 		"throw", "throws", "transient", "try", "void", "volatile", "while"];
 
-	var kw = new RegExp("(^|\\s|\\.|\\()("+keywords.join("|")+")(?=\\s|\\.|\\(|\\)|\\[|\\]|;|$|,)","gm");
+	var kw = new RegExp("(^|\\s|\\.|\\()(" + keywords.join("|") + ")(?=\\s|\\.|\\(|\\)|\\[|\\]|;|$|,)", "gm");
 	patterns.push({
 		token: "keyword",
 		re: kw,
