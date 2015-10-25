@@ -39,7 +39,7 @@
 
 	patterns.push({
 		token: "comment",
-		re: /([^:])(\/\/.*)/g,
+		re: /([^:]|^)(\/\/.*)/g,
 		index: 2
 	});
 
