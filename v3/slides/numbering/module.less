@@ -37,7 +37,7 @@ body[data-numbering=chapter] {
 			}
 		}
 
-		&:not([data-counter=skip]):not(:first-of-type):not(:last-of-type):not(.chapter) {
+		&:not([data-numbering=skip]):not(:first-of-type):not(:last-of-type):not(.chapter) {
 			& h2::before {
 				content: counter(chapter) "." counter(slide);
 				margin-right: 0.5em;

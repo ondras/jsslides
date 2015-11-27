@@ -30,11 +30,11 @@ body[data-numbering=chapter] .slide.chapter h2::before {
 body[data-numbering=chapter] .slide.chapter::after {
   content: counter(chapter);
 }
-body[data-numbering=chapter] .slide:not([data-counter=skip]):not(:first-of-type):not(:last-of-type):not(.chapter) h2::before {
+body[data-numbering=chapter] .slide:not([data-numbering=skip]):not(:first-of-type):not(:last-of-type):not(.chapter) h2::before {
   content: counter(chapter) "." counter(slide);
   margin-right: 0.5em;
 }
-body[data-numbering=chapter] .slide:not([data-counter=skip]):not(:first-of-type):not(:last-of-type):not(.chapter)::after {
+body[data-numbering=chapter] .slide:not([data-numbering=skip]):not(:first-of-type):not(:last-of-type):not(.chapter)::after {
   content: counter(chapter) "." counter(slide);
 }
 /* show after counters only in overview */
