@@ -1,4 +1,4 @@
-document.documentElement.style.display = "none";
+document.documentElement.style.visibility = "hidden";
 var Slides = {
 	modules: {},
 	slides: [],
@@ -138,7 +138,7 @@ var Slides = {
 					count++;
 					this.addScript(id + "/module.js").onload = function() {
 						count--;
-						if (!count) { document.documentElement.style.display = ""; }
+						if (!count) { document.documentElement.style.visibility = ""; }
 					}
 				}
 			break;
@@ -247,7 +247,8 @@ Slides.modules.overview = true;
 Slides.modules.help = true;
 Slides.modules.fontsize = {
 	sizes: ["100%" ,"120%", "150%", "200%", "250%", "350%"],
-	normal: "150%"
+	normal: "150%",
+	fit: false
 };
 Slides.modules.syntax = true;
 Slides.modules.window = true;

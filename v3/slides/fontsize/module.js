@@ -37,4 +37,25 @@
 		if (conf.sizes.indexOf(size) != -1) { conf.normal = size; }
 	}
 	normal();
+
+	if (!conf.fit) { return; }
+
+	var current = null;
+	var onchange = function() {
+		if (Slides.current == current) { return; }
+		current = Slides.current;
+		var node = current.getNode();
+		
+		node.style.visibility = "hidden";
+
+		var i = conf.sizes.length;
+		while (i --> 0) {
+			set(i);
+			if (node.scrollHeight == node.offsetHeight) { break; }
+		}
+
+		node.style.visibility = "";
+	}
+	Slides.addChangeListener(onchange);
+	onchange();
 })();
