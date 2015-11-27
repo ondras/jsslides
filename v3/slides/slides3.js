@@ -95,14 +95,20 @@ var Slides = {
 	},
 	
 	format: function(template) {
-		var replacements = {
+		var scope = {
 			"s": this.current.getTitle(),
 			"t": this._title,
 			"n": this.slides.indexOf(Slides.current) + 1,
 			"c": this.slides.length
 		};
-		return template.replace(/%([a-z])/g, function(match, letter) {
-			return replacements[letter] || match;
+		return template.replace(/%([a-z]|{(.*?)})/g, function(match, letter, expr) {
+			if (expr) {
+				with (scope) { return eval(expr); }
+			} else if (letter) {
+				return scope[letter];
+			} else {
+				return match;
+			}
 		});
 	},
 
