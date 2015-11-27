@@ -37,11 +37,11 @@
 		index: 2
 	});
 
-	var keywords = ["break", "case", "catch", "continue", "default", "delete", "do", "else",
-		"finally", "for", "function", "if", "in", "instanceof", "new", "return",
+	var keywords = ["as", "break", "case", "catch", "class", "continue", "default", "delete", "do", "else",
+		"export", "finally", "for", "from", "function", "if", "in", "instanceof", "import", "new", "return",
 		"switch", "this", "throw", "try", "typeof", "var", "void", "while", "with", "__proto__",
 		"true", "false", "null", "NaN", "prototype", "call", "apply", "constructor",
-		"let", "const", "class", "extends"];
+		"let", "const", "class", "extends", "=&gt;"];
 
 	var kw = new RegExp("(^|\\s|:|\\.|\\()("+keywords.join("|")+")(?=[\\s\\.\\(\\)\\[\\];$,{}])","gm");
 	patterns.push({
