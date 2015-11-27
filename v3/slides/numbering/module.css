@@ -1,0 +1,43 @@
+/* slide numbering model: number every slide, skip chapters, first/last slides */
+body[data-numbering=slide] {
+  counter-reset: slide;
+}
+body[data-numbering=slide] .slide:not([data-numbering=skip]):not(:first-of-type):not(:last-of-type):not(.chapter) {
+  counter-increment: slide;
+}
+body[data-numbering=slide] .slide:not([data-numbering=skip]):not(:first-of-type):not(:last-of-type):not(.chapter) h2::before {
+  content: counter(slide);
+  margin-right: 0.5em;
+}
+body[data-numbering=slide] .slide:not([data-numbering=skip]):not(:first-of-type):not(:last-of-type):not(.chapter)::after {
+  content: counter(slide);
+}
+/* chapter numbering model: number chapters and slides, skip first/last */
+body[data-numbering=chapter] {
+  counter-reset: slide chapter;
+}
+body[data-numbering=chapter] .slide {
+  counter-increment: slide;
+}
+body[data-numbering=chapter] .slide.chapter {
+  counter-increment: chapter;
+  counter-reset: slide;
+}
+body[data-numbering=chapter] .slide.chapter h2::before {
+  content: counter(chapter);
+  margin-right: 0.5em;
+}
+body[data-numbering=chapter] .slide.chapter::after {
+  content: counter(chapter);
+}
+body[data-numbering=chapter] .slide:not([data-counter=skip]):not(:first-of-type):not(:last-of-type):not(.chapter) h2::before {
+  content: counter(chapter) "." counter(slide);
+  margin-right: 0.5em;
+}
+body[data-numbering=chapter] .slide:not([data-counter=skip]):not(:first-of-type):not(:last-of-type):not(.chapter)::after {
+  content: counter(chapter) "." counter(slide);
+}
+/* show after counters only in overview */
+body:not(.overview) .slide::after {
+  display: none;
+}

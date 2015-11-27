@@ -1,7 +1,3 @@
-html, body {
-	counter-reset: slide;
-}
-
 thead td {
 	font-weight: bold;
 }
@@ -12,14 +8,6 @@ table {
 
 h1 {
 	display: none;
-}
-
-.slide {
-	counter-increment: slide;
-}
-
-.slide:first-of-type {
-	counter-increment: none;
 }
 
 code {

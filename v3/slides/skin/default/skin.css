@@ -81,7 +81,7 @@ code.block {
 		position: relative;
 	}
 
-	li.current:before {
+	li.current::before {
 		content: "☞";
 		font-weight: normal;
 		font-family: freeserif, serif;

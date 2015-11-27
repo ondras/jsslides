@@ -2,7 +2,6 @@
 
 body {
 	font-family: arial, sans-serif;
-	counter-reset: chapter;
 }
 
 code {
@@ -33,25 +32,6 @@ code.block {
 	padding: 0.5em;
 	line-height: 150%;
 	margin-bottom: 0.5em;
-}
-
-.slide.chapter {
-	counter-increment: chapter;
-	counter-reset: slide;
-}
-
-.slide h2:before {
-	content: counter(chapter) "." counter(slide);
-	margin-right: 0.5em;
-}
-
-.slide.chapter h2:before {
-	content: counter(chapter);
-}
-
-.slide:nth-of-type(1) h2:before, .slide:nth-of-type(2) h2:before, .slide:last-of-type h2:before { /* headings without counters */
-	content: none;
-	margin: 0;
 }
 
 #progress, #time {
@@ -122,7 +102,7 @@ code.block {
 		right: 45px;
 	}
 
-	.slide:last-of-type:before {
+	.slide:last-of-type::before {
 		width: 100%;
 		height: 330px;
 		position: absolute;
@@ -206,7 +186,7 @@ code.block {
 		border-radius: 20px;
 	}
 	
-	.overview .slide:after {
+	.overview .slide::after {
 		font-size: 800%;
 		position: absolute;
 		right: 2%;
@@ -218,16 +198,4 @@ code.block {
 	.overview .slide.current, .overview .slide:hover {
 		background-color: #eee;
 	}
-	
-	.overview .slide:after {
-		content: counter(chapter) "." counter(slide);
-	}
-
-	.overview .slide.chapter:after {
-		content: counter(chapter);
-	}
-
-	.overview .slide:nth-of-type(1):after, .overview .slide:nth-of-type(2):after, .overview .slide:last-of-type:after {
-		content: none;
-	}	
 }

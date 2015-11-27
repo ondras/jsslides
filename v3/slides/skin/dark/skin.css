@@ -80,7 +80,7 @@ p img {
 		bottom: 1em;
 	}
 	
-	.slide:last-of-type p:before {
+	.slide:last-of-type p::before {
 		content: "?";
 		display: block;
 		text-align: center;

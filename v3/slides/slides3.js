@@ -115,7 +115,7 @@ var Slides = {
 					meta.name = "viewport";
 					document.querySelector("head, body").appendChild(meta);
 				}
-				meta.content = "user-scalable=0,initial-scale=1";
+				meta.content = "width=device-width,user-scalable=0,initial-scale=1";
 
 				this.addStylesheet("slides3.css");
 
@@ -128,6 +128,7 @@ var Slides = {
 
 				var count = 0;
 				for (var id in this.modules) {
+					if (!this.modules[id]) { continue; }
 					count++;
 					this.addScript(id + "/module.js").onload = function() {
 						count--;
@@ -262,3 +263,4 @@ Slides.modules.mouse = ""; /* "x", "y", "button" */
 		auth: "github"
 	}
 */
+Slides.modules.numbering = true;
