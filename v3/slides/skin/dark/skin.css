@@ -15,6 +15,16 @@ code {
 	font-family: ubuntu mono, monospace;
 }
 
+kbd {
+	display: inline-block;
+	margin: 0 0.1em;
+	padding: 0.2em 0.6em;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	background-color: rgba(0, 0, 0, 0.5);
+}
+
+
 li {
 	line-height: 175%;
 }
@@ -33,22 +43,22 @@ p img {
 
 .slide.chapter h2 {
 	text-align: center;
-}	
+}
 
 @media screen {
 	body {
 		background-color: #000;
 		color: #ddd;
 	}
-	
+
 	h2 {
 		color: hsl(180, 50%, 50%);
 	}
-	
+
 	a, code {
 		color: #eee;
 	}
-	
+
 	code.block {
 		border-left: 0.2rem solid hsl(180, 50%, 50%);
 		background-color: rgba(80, 80, 80, 0.25);
@@ -58,11 +68,11 @@ p img {
 		margin-left: 2rem;
 		margin-right: 2rem;
 	}
-	
-	.slide > img { 
+
+	.slide > img {
 		margin: 0;
 	}
-	
+
 	.slide ul, .slide ol {
 		padding-left: 1.1rem;
 	}
@@ -72,14 +82,14 @@ p img {
 		margin-top: 1.5rem;
 		margin-bottom: 1rem;
 	}
-	
+
 	.slide:first-of-type code {
 		color: #eee;
 		position: absolute;
 		left: 0;
 		bottom: 1em;
 	}
-	
+
 	.slide:last-of-type p::before {
 		content: "?";
 		display: block;
@@ -93,7 +103,7 @@ p img {
 	footer {
 		transition: opacity 500ms;
 	}
-	
+
 	.slide.current:first-of-type ~ footer {
 		opacity: 0;
 	}
@@ -110,14 +120,19 @@ p img {
 	}
 
 	.keyword {
-		color: #55c !important;
+		color: #66f !important;
+	}
+
+	.number {
+		color: #f44 !important;
 	}
 
 	.string, .string * {
-		color: #888 !important;
+		color: #999 !important;
 	}
 
 	.comment, .comment * {
-		color: #4a4 !important;
+		color: #6f6 !important;
 	}
+
 }
