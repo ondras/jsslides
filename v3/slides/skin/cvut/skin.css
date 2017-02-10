@@ -142,6 +142,10 @@ td, th {
 	.overview .section.after {
 		opacity: 1;
 	}
+
+	.line-counter {
+		opacity: 0.3 !important;
+	}
 }
 
 @media (max-width: 580px) {
