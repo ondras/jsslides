@@ -37,7 +37,7 @@
 		index: 2
 	});
 
-	var keywords = ["as", "break", "case", "catch", "class", "const", "continue",
+	var keywords = ["as", "async", "await", "break", "case", "catch", "class", "const", "continue",
 	    "default", "delete", "do", "else", "export", "extends", "finally", "for", "from",
 	    "function", "if", "in", "instanceof", "import", "let", "new", "return",
 		"switch", "this", "throw", "try", "typeof", "var", "void", "while", "with", "__proto__",
