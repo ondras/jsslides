@@ -26,7 +26,8 @@ kbd {
 
 
 li {
-	line-height: 175%;
+	line-height: 1.25;
+	margin: 0.5em 0;
 }
 
 code.block {
@@ -57,6 +58,10 @@ p img {
 
 	a, code {
 		color: #eee;
+	}
+
+	a:hover {
+		text-decoration-color: #88f;
 	}
 
 	code.block {
