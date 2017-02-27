@@ -4,7 +4,7 @@ var Slides = {
 	slides: [],
 	current: null,
 
-	_title: document.querySelector("h1, title").innerHTML,
+	_title: document.querySelector("h1, title").innerText,
 	_path: [].slice.call(document.querySelectorAll("script")).pop().src.split("/").slice(0, -1).join("/"),
 	_listeners: {
 		key: [],
@@ -177,7 +177,7 @@ Slide.prototype.getNode = function() {
 
 Slide.prototype.getTitle = function() {
 	var node = this._node.querySelector("h2, h3, strong, em");
-	return (node ? node.innerHTML : "");
+	return (node ? node.innerText : "");
 }
 
 Slide.prototype.hide = function() {
