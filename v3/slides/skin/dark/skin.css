@@ -61,17 +61,17 @@ p img {
 	}
 
 	a:hover {
-		text-decoration-color: #88f;
+		text-decoration-color: hsl(180, 50%, 50%);
 	}
 
 	code.block {
-		border-left: 0.2rem solid hsl(180, 50%, 50%);
+		border-left: 0.3rem solid hsl(180, 50%, 50%);
 		background-color: rgba(80, 80, 80, 0.25);
 	}
 
 	.slide > * {
-		margin-left: 2rem;
-		margin-right: 2rem;
+		margin-left: 3rem;
+		margin-right: 3rem;
 	}
 
 	.slide > img {
@@ -79,13 +79,13 @@ p img {
 	}
 
 	.slide ul, .slide ol {
-		padding-left: 1.1rem;
+		padding-left: 1.65rem;
 	}
 
 	.slide h2 {
 		font-size: 200%;
-		margin-top: 1.5rem;
-		margin-bottom: 1rem;
+		margin-top: 2.25rem;
+		margin-bottom: 2rem;
 	}
 
 	.slide:first-of-type code {
