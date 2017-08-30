@@ -42,7 +42,7 @@
 	    "function", "if", "in", "instanceof", "import", "let", "new", "return",
 		"switch", "this", "throw", "try", "typeof", "var", "void", "while", "with", "__proto__",
 		"true", "false", "null", "NaN", "prototype", "call", "apply", "constructor",
-		"=&gt;"];
+		"=&gt;", "yield"];
 
 	var kw = new RegExp("(^|\\s|:|\\.|\\()("+keywords.join("|")+")(?=[\\s\\.\\(\\)\\[\\];$,{}])","gm");
 	patterns.push({
